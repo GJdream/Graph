@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #import "GRViewController.h"
+#import "GRInstructionTableViewController.h"
 
 @interface GRSplitViewController : UISplitViewController {
     UIView *selectedView;
@@ -18,7 +19,8 @@
     CGRect originalRect;
     CGPoint initialPoint;
     
-    GRViewController *vc;
+    GRViewController *detailController;
+    GRInstructionTableViewController *masterController;
 }
 
 @end

@@ -8,9 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GRViewController : UIViewController
+#import "Constants.h"
+
+#import "GRInstructionCell.h"
+
+@interface GRViewController : UIViewController {
+    API_TYPE apiType;
+}
 
 @property (strong, nonatomic) IBOutlet UIImageView *apiBorder;
 
 - (void)apiBorderMask:(BOOL)enabled;
+- (void)addCell:(GRInstructionCell *)cell;
 @end

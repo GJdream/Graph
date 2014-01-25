@@ -9,6 +9,8 @@
 
 #import "GRSplitViewController.h"
 
+#import "Constants.h"
+
 #define BORDER_INSET 15
 
 @interface GRSplitViewController ()
@@ -19,7 +21,9 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    vc = (GRViewController *)self.viewControllers[1];
+    detailController = (GRViewController *)self.viewControllers[1];
+    masterController = (GRInstructionTableViewController *)self.viewControllers[0];
+
 }
 
 - (void)dragged:(UIPanGestureRecognizer *)recognizer {
@@ -49,12 +53,26 @@
 
     }
     else if (recognizer.state == UIGestureRecognizerStateEnded) {
-        [UIView animateWithDuration:.5 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-            selectedView.frame = originalRect;
-            selectedView.alpha = 0;
-        } completion:^(BOOL finished) {
-            [selectedView removeFromSuperview];
-        }];
+        CGRect apiRect = [detailController.apiBorder convertRect:detailController.apiBorder.bounds toView:self.view];
+        if (CGRectIntersectsRect(selectedView.frame, apiRect)) {
+            [detailController apiBorderMask:YES];
+            [UIView animateWithDuration:.5 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+                selectedView.frame = CGRectMake(apiRect.origin.x + BORDER_INSET/2, apiRect.origin.y + BORDER_INSET/2, detailController.apiBorder.frame.size.width - BORDER_INSET, detailController.apiBorder.frame.size.height - BORDER_INSET);
+
+            } completion:^(BOOL completed) {
+                [detailController addCell:recognizer.view];
+                [masterController addCell:recognizer.view];
+            }];
+        }
+        else {
+            [UIView animateWithDuration:.5 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+                selectedView.frame = originalRect;
+                selectedView.alpha = 0;
+            } completion:^(BOOL finished) {
+                [selectedView removeFromSuperview];
+            }];
+            [detailController apiBorderMask:NO];
+        }
     }
     else {
         float deltaX = newPoint.x-initialPoint.x;
@@ -62,12 +80,13 @@
         selectedView.center = CGPointMake(selectedView.center.x + deltaX, selectedView.center.y + deltaY);
         
         [UIView animateWithDuration:.2 animations:^{
-            if (CGRectIntersectsRect(selectedView.frame, [vc.apiBorder convertRect:vc.apiBorder.bounds toView:self.view])) {
-                selectedView.frame = CGRectMake(selectedView.frame.origin.x, selectedView.frame.origin.y, vc.apiBorder.frame.size.width - BORDER_INSET, vc.apiBorder.frame.size.height - BORDER_INSET);
-                
+            if (CGRectIntersectsRect(selectedView.frame, [detailController.apiBorder convertRect:detailController.apiBorder.bounds toView:self.view])) {
+                selectedView.frame = CGRectMake(selectedView.frame.origin.x, selectedView.frame.origin.y, detailController.apiBorder.frame.size.width - BORDER_INSET, detailController.apiBorder.frame.size.height - BORDER_INSET);
+                [detailController apiBorderMask:YES];
             }
             else {
                 selectedView.frame = CGRectMake(selectedView.frame.origin.x, selectedView.frame.origin.y, originalRect.size.width, originalRect.size.height);
+                [detailController apiBorderMask:NO];
             }
         }completion:^(BOOL isCompleted){
             

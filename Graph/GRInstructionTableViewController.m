@@ -8,6 +8,10 @@
 
 #import "GRInstructionTableViewController.h"
 
+#import "GRInstructionCell.h"
+
+#define NUM_OF_INSTAGRAM_MODELS 3
+
 @interface GRInstructionTableViewController ()
 
 @end
@@ -29,17 +33,21 @@
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)addCell:(GRInstructionCell *)cell {
+    if (cell.cellType == kAPI) {
+        apiType = cell.apiType;
+        [self.tableView reloadData];
+        filterLevel = 1;
+    }
+    else {
+    }
 }
 
-#pragma mark - Table view data source
+#pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return apiType == kNoAPI ? 1 : 1 + filterLevel;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -48,6 +56,11 @@
     switch (section) {
         case 0:
             rows = 1;
+            break;
+        case 1:
+            if (apiType == kInstagram) {
+                rows = NUM_OF_INSTAGRAM_MODELS;
+            }
             break;
             
         default:
@@ -60,7 +73,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Instruction";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    GRInstructionCell *cell = (GRInstructionCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     // Configure the cell...
     if (indexPath.section == 0) {
@@ -71,7 +84,9 @@
             title.text = @"Instagram";
             UILabel *subtitle = (UILabel *)[cell viewWithTag:3];
             subtitle.text = @"Capture and Share the World's Moments.";
+            cell.apiType = kInstagram;
         }
+        cell.cellType = kAPI;
     }
     for (UIGestureRecognizer *g in cell.gestureRecognizers) {
         [cell removeGestureRecognizer:g];
@@ -95,55 +110,5 @@
     return title;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a story board-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-
- */
 
 @end

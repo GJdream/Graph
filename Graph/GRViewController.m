@@ -8,6 +8,9 @@
 
 #import "GRViewController.h"
 
+
+#define CORAL [UIColor colorWithRed:255/255.0 green:137/255.0 blue:128/255.0 alpha:1]
+
 @interface GRViewController ()
 
 @end
@@ -36,7 +39,16 @@
 }
 
 - (void)apiBorderMask:(BOOL)enabled {
-    _apiBorder.image = 
+    _apiBorder.image = enabled ? [self maskedImageNamed:@"api-border.png" color:CORAL] : [UIImage imageNamed:@"api-border.png"];
+}
+
+- (void)addCell:(GRInstructionCell *)cell {
+    if (cell.cellType == kAPI) {
+        apiType = cell.apiType;
+    }
+    else {
+        
+    }
 }
 
 @end

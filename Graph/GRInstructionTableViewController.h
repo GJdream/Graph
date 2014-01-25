@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GRInstructionTableViewController : UITableViewController
+#import "GRInstructionCell.h"
 
+#import "Constants.h"
+@interface GRInstructionTableViewController : UITableViewController {
+    API_TYPE apiType;
+    int filterLevel;
+}
+- (void)addCell:(GRInstructionCell *)cell;
 @end
