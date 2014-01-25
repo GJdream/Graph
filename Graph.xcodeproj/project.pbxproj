@@ -23,7 +23,7 @@
 		9EE1BE6E1893602F0098BE90 /* GraphTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EE1BE6D1893602F0098BE90 /* GraphTests.m */; };
 		9EE1BE791893634F0098BE90 /* GRInstructionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EE1BE781893634F0098BE90 /* GRInstructionTableViewController.m */; };
 		9EE1BE8018936B890098BE90 /* GRSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EE1BE7F18936B890098BE90 /* GRSplitViewController.m */; };
-		9EE1BE8218936D600098BE90 /* instagram-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EE1BE8118936D600098BE90 /* instagram-logo.png */; };
+		9EE1BE8218936D600098BE90 /* instagram-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EE1BE8118936D600098BE90 /* instagram-icon@2x.png */; };
 		9EE1BE8C1893890E0098BE90 /* api-border@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EE1BE8B1893890E0098BE90 /* api-border@2x.png */; };
 		9EE1BE90189391450098BE90 /* GRInstructionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EE1BE8F189391450098BE90 /* GRInstructionCell.m */; };
 		9EE1BE93189394BF0098BE90 /* GRModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EE1BE92189394BF0098BE90 /* GRModel.m */; };
@@ -37,6 +37,10 @@
 		9EE1BEB31893996C0098BE90 /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EE1BEA61893996C0098BE90 /* AFXMLRequestOperation.m */; };
 		9EE1BEB41893996C0098BE90 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EE1BEA81893996C0098BE90 /* UIImageView+AFNetworking.m */; };
 		9EE1BEB51893996C0098BE90 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EE1BEAB1893996C0098BE90 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		9EE1BEB81893FBE60098BE90 /* users-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EE1BEB71893FBE60098BE90 /* users-icon@2x.png */; };
+		9EE1BEBA189411D70098BE90 /* photos-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EE1BEB9189411D60098BE90 /* photos-icon@2x.png */; };
+		9EE1BEBC1894166A0098BE90 /* comments-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EE1BEBB1894166A0098BE90 /* comments-icon@2x.png */; };
+		9EE1BEBE1894460D0098BE90 /* dotted-line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EE1BEBD1894460D0098BE90 /* dotted-line@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,7 +77,7 @@
 		9EE1BE781893634F0098BE90 /* GRInstructionTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRInstructionTableViewController.m; sourceTree = "<group>"; };
 		9EE1BE7E18936B890098BE90 /* GRSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRSplitViewController.h; sourceTree = "<group>"; };
 		9EE1BE7F18936B890098BE90 /* GRSplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRSplitViewController.m; sourceTree = "<group>"; };
-		9EE1BE8118936D600098BE90 /* instagram-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "instagram-logo.png"; sourceTree = "<group>"; };
+		9EE1BE8118936D600098BE90 /* instagram-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "instagram-icon@2x.png"; sourceTree = "<group>"; };
 		9EE1BE8B1893890E0098BE90 /* api-border@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "api-border@2x.png"; sourceTree = "<group>"; };
 		9EE1BE8D18938A5D0098BE90 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		9EE1BE8E189391450098BE90 /* GRInstructionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRInstructionCell.h; sourceTree = "<group>"; };
@@ -101,6 +105,10 @@
 		9EE1BEA81893996C0098BE90 /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
 		9EE1BEAA1893996C0098BE90 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
 		9EE1BEAB1893996C0098BE90 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
+		9EE1BEB71893FBE60098BE90 /* users-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "users-icon@2x.png"; sourceTree = "<group>"; };
+		9EE1BEB9189411D60098BE90 /* photos-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photos-icon@2x.png"; sourceTree = "<group>"; };
+		9EE1BEBB1894166A0098BE90 /* comments-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "comments-icon@2x.png"; sourceTree = "<group>"; };
+		9EE1BEBD1894460D0098BE90 /* dotted-line@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dotted-line@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,7 +184,11 @@
 				9EE1BEB61893996E0098BE90 /* External */,
 				9EE1BE5A1893602F0098BE90 /* Images.xcassets */,
 				9EE1BE8B1893890E0098BE90 /* api-border@2x.png */,
-				9EE1BE8118936D600098BE90 /* instagram-logo.png */,
+				9EE1BE8118936D600098BE90 /* instagram-icon@2x.png */,
+				9EE1BEB71893FBE60098BE90 /* users-icon@2x.png */,
+				9EE1BEB9189411D60098BE90 /* photos-icon@2x.png */,
+				9EE1BEBB1894166A0098BE90 /* comments-icon@2x.png */,
+				9EE1BEBD1894460D0098BE90 /* dotted-line@2x.png */,
 				9EE1BE491893602F0098BE90 /* Supporting Files */,
 			);
 			path = Graph;
@@ -344,11 +356,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9EE1BEBA189411D70098BE90 /* photos-icon@2x.png in Resources */,
 				9EE1BE5B1893602F0098BE90 /* Images.xcassets in Resources */,
 				9EE1BE8C1893890E0098BE90 /* api-border@2x.png in Resources */,
+				9EE1BEB81893FBE60098BE90 /* users-icon@2x.png in Resources */,
 				9EE1BE4D1893602F0098BE90 /* InfoPlist.strings in Resources */,
+				9EE1BEBC1894166A0098BE90 /* comments-icon@2x.png in Resources */,
+				9EE1BEBE1894460D0098BE90 /* dotted-line@2x.png in Resources */,
 				9EE1BE561893602F0098BE90 /* Main.storyboard in Resources */,
-				9EE1BE8218936D600098BE90 /* instagram-logo.png in Resources */,
+				9EE1BE8218936D600098BE90 /* instagram-icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

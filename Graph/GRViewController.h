@@ -17,6 +17,8 @@
 }
 
 @property (strong, nonatomic) IBOutlet UIImageView *apiBorder;
+@property (strong, nonatomic) IBOutlet UIView *modelView;
+@property (strong, nonatomic) IBOutlet UIImageView *modelBorder;
 
 - (void)apiBorderMask:(BOOL)enabled;
 - (void)addCell:(GRInstructionCell *)cell;

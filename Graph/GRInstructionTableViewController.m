@@ -31,16 +31,55 @@
 {
     [super viewDidLoad];
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, .5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        apiType = kInstagram;
+        filterLevel = 1;
+        [self.tableView reloadData];
+    });
 }
 
 - (void)addCell:(GRInstructionCell *)cell {
     if (cell.cellType == kAPI) {
         apiType = cell.apiType;
-        [self.tableView reloadData];
         filterLevel = 1;
+        [self.tableView reloadData];
     }
     else {
     }
+}
+
+- (GRInstructionCell *)makeUsersCell:(GRInstructionCell *)cell {
+    UIImageView *logoView = (UIImageView *)[cell viewWithTag:1];
+    logoView.image = [UIImage imageNamed:@"users-icon.png"];
+    UILabel *title = (UILabel *)[cell viewWithTag:2];
+    title.text = @"Users";
+    UILabel *subtitle = (UILabel *)[cell viewWithTag:3];
+    subtitle.text = @"Search for users.";
+    cell.modelType = kUsers;
+    return cell;
+}
+
+- (GRInstructionCell *)makePhotosCell:(GRInstructionCell *)cell {
+    UIImageView *logoView = (UIImageView *)[cell viewWithTag:1];
+    logoView.image = [UIImage imageNamed:@"photos-icon.png"];
+    UILabel *title = (UILabel *)[cell viewWithTag:2];
+    title.text = @"Photos";
+    UILabel *subtitle = (UILabel *)[cell viewWithTag:3];
+    subtitle.text = @"Search for photos.";
+    cell.modelType = kPhotos;
+    return cell;
+}
+
+- (GRInstructionCell *)makeCommentsCell:(GRInstructionCell *)cell {
+    UIImageView *logoView = (UIImageView *)[cell viewWithTag:1];
+    logoView.image = [UIImage imageNamed:@"comments-icon.png"];
+    UILabel *title = (UILabel *)[cell viewWithTag:2];
+    title.text = @"Comments";
+    UILabel *subtitle = (UILabel *)[cell viewWithTag:3];
+    subtitle.text = @"Search for comments.";
+    cell.modelType = kComments;
+    return cell;
 }
 
 #pragma mark - UITableViewDataSource
@@ -75,11 +114,11 @@
     static NSString *CellIdentifier = @"Instruction";
     GRInstructionCell *cell = (GRInstructionCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    // Configure the cell...
+    // API's queriable
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
             UIImageView *logoView = (UIImageView *)[cell viewWithTag:1];
-            logoView.image = [UIImage imageNamed:@"instagram-logo.png"];
+            logoView.image = [UIImage imageNamed:@"instagram-icon.png"];
             UILabel *title = (UILabel *)[cell viewWithTag:2];
             title.text = @"Instagram";
             UILabel *subtitle = (UILabel *)[cell viewWithTag:3];
@@ -88,8 +127,18 @@
         }
         cell.cellType = kAPI;
     }
-    for (UIGestureRecognizer *g in cell.gestureRecognizers) {
-        [cell removeGestureRecognizer:g];
+    else if (indexPath.section == 1) {
+        //models receivable
+        if (indexPath.row == 0) {
+            cell = [self makeUsersCell:cell];
+        }
+        else if (indexPath.row == 1) {
+            cell = [self makePhotosCell:cell];
+        }
+        else if (indexPath.row == 2) {
+            cell = [self makeCommentsCell:cell];
+        }
+        cell.cellType = kModel;
     }
     UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self.parentViewController.parentViewController action:@selector(dragged:)];
     [cell addGestureRecognizer:panGesture];
@@ -102,6 +151,9 @@
     switch (section) {
         case 0:
             title = @"Networks";
+            break;
+        case 1:
+            title = @"Models";
             break;
             
         default:
