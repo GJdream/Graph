@@ -22,9 +22,9 @@
 		9EE1BE6C1893602F0098BE90 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9EE1BE6A1893602F0098BE90 /* InfoPlist.strings */; };
 		9EE1BE6E1893602F0098BE90 /* GraphTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EE1BE6D1893602F0098BE90 /* GraphTests.m */; };
 		9EE1BE791893634F0098BE90 /* GRInstructionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EE1BE781893634F0098BE90 /* GRInstructionTableViewController.m */; };
-		9EE1BE7D18936A170098BE90 /* api-border@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EE1BE7C18936A170098BE90 /* api-border@2x.png */; };
 		9EE1BE8018936B890098BE90 /* GRSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EE1BE7F18936B890098BE90 /* GRSplitViewController.m */; };
 		9EE1BE8218936D600098BE90 /* instagram-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EE1BE8118936D600098BE90 /* instagram-logo.png */; };
+		9EE1BE8A18937D530098BE90 /* api-border@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EE1BE8918937D530098BE90 /* api-border@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,10 +59,10 @@
 		9EE1BE6D1893602F0098BE90 /* GraphTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GraphTests.m; sourceTree = "<group>"; };
 		9EE1BE771893634F0098BE90 /* GRInstructionTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRInstructionTableViewController.h; sourceTree = "<group>"; };
 		9EE1BE781893634F0098BE90 /* GRInstructionTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRInstructionTableViewController.m; sourceTree = "<group>"; };
-		9EE1BE7C18936A170098BE90 /* api-border@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "api-border@2x.png"; sourceTree = "<group>"; };
 		9EE1BE7E18936B890098BE90 /* GRSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRSplitViewController.h; sourceTree = "<group>"; };
 		9EE1BE7F18936B890098BE90 /* GRSplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRSplitViewController.m; sourceTree = "<group>"; };
 		9EE1BE8118936D600098BE90 /* instagram-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "instagram-logo.png"; sourceTree = "<group>"; };
+		9EE1BE8918937D530098BE90 /* api-border@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "api-border@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,7 +132,7 @@
 				9EE1BE771893634F0098BE90 /* GRInstructionTableViewController.h */,
 				9EE1BE781893634F0098BE90 /* GRInstructionTableViewController.m */,
 				9EE1BE5A1893602F0098BE90 /* Images.xcassets */,
-				9EE1BE7C18936A170098BE90 /* api-border@2x.png */,
+				9EE1BE8918937D530098BE90 /* api-border@2x.png */,
 				9EE1BE8118936D600098BE90 /* instagram-logo.png */,
 				9EE1BE491893602F0098BE90 /* Supporting Files */,
 			);
@@ -249,9 +249,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				9EE1BE5B1893602F0098BE90 /* Images.xcassets in Resources */,
+				9EE1BE8A18937D530098BE90 /* api-border@2x.png in Resources */,
 				9EE1BE4D1893602F0098BE90 /* InfoPlist.strings in Resources */,
 				9EE1BE561893602F0098BE90 /* Main.storyboard in Resources */,
-				9EE1BE7D18936A170098BE90 /* api-border@2x.png in Resources */,
 				9EE1BE8218936D600098BE90 /* instagram-logo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

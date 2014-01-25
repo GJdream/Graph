@@ -8,6 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GRSplitViewController : UISplitViewController
+#import "GRViewController.h"
+
+@interface GRSplitViewController : UISplitViewController {
+    UIView *selectedView;
+    UIImageView *logoView;
+    UILabel *title;
+    UILabel *subtitle;
+    CGRect originalRect;
+    CGPoint initialPoint;
+    
+    GRViewController *vc;
+}
 
 @end

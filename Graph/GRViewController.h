@@ -10,4 +10,7 @@
 
 @interface GRViewController : UIViewController
 
+@property (strong, nonatomic) IBOutlet UIImageView *apiBorder;
+
+- (void)apiBorderMask:(BOOL)enabled;
 @end
