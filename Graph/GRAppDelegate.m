@@ -13,7 +13,7 @@
 #import "AFNetworking.h"
 #import "JSONKit.h"
 
-#define API_URl @"https://api.instagram.com/v1/users"
+#define API_URL @"https://api.instagram.com/v1/"
 
 @implementation GRAppDelegate
 
@@ -29,9 +29,10 @@
     NSLog(@"C:%@", pathComponents);
     if ([[pathComponents firstObject] rangeOfString:@"token="].location != NSNotFound) {
         NSRange range = [[pathComponents firstObject] rangeOfString:@"token="];
-        NSString *code = [[pathComponents firstObject] substringFromIndex:range.location + range.length];
-        NSLog(@"%@", code);
-        [[NSUserDefaults standardUserDefaults] setObject:code forKey:@"ACCESS_TOKEN"];
+        NSString *token = [[pathComponents firstObject] substringFromIndex:range.location + range.length];
+        NSLog(@"%@", token);
+        [[NSUserDefaults standardUserDefaults] setObject:token forKey:@"ACCESS_TOKEN"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
         
 //        AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
 //        [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -56,10 +57,14 @@
 //            NSLog(@"Response:%@", response.);
 //        }
         
-        NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/users/3/media/recent/?access_token=%@",API_URl,[[ NSUserDefaults standardUserDefaults] valueForKey:@"ACCESS_TOKEN"]]]];
+        NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/users/29174454?access_token=%@",API_URL,token]]];
+        NSLog(@"URL:%@", [NSString stringWithFormat:@"%@/users/29174454?access_token=%@",API_URL,token]);
         // Here you can handle response as well
-        NSDictionary *dictResponse = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
-        NSLog(@"Response : %@",dictResponse);
+        if (data) {
+            NSLog(@"D");
+            NSDictionary *dictResponse = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+            NSLog(@"Response : %@",dictResponse);
+        }
     }
     return YES;
 }
