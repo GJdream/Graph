@@ -26,12 +26,13 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(instagramModal) name:@"Instagram" object:nil];
     detailController = (GRViewController *)self.viewControllers[1];
     masterController = (GRInstructionTableViewController *)[[(UINavigationController *)self.viewControllers[0] childViewControllers] firstObject];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, .5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-        [self instagramModal];
-    });
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, .5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+//        [self instagramModal];
+//    });
 }
 
 - (void)instagramModal {
+    [masterController clear];
     [self performSegueWithIdentifier:@"Results" sender:@"Instagram"];
 }
 

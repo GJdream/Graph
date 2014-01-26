@@ -161,7 +161,9 @@
 {
     //https://api.instagram.com/v1/media/search?lat=37.3894&lng=122.0819&distance=5000
     if (fromType == kFromPhotos) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"Instagram" object:nil];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, .5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"Instagram" object:nil];
+        });
     }
     
 }

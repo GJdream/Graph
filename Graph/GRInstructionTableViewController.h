@@ -18,4 +18,5 @@
     int filterLevel;
 }
 - (void)addCell:(GRInstructionCell *)cell;
+- (void)clear;
 @end

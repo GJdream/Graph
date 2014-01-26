@@ -163,34 +163,49 @@
         [self fromBorderMask:NO];
         _scrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height + 210);
         
-        CAShapeLayer *shapeLayer = [CAShapeLayer layer];
-        [_fromView.layer addSublayer:shapeLayer];
+        lastLineLayer = [CAShapeLayer layer];
+        [_fromView.layer addSublayer:lastLineLayer];
         UIBezierPath *path = [UIBezierPath bezierPath];
         [path moveToPoint:CGPointMake(55, 215)];
         [path addLineToPoint:CGPointMake(606, 215)];
         [path stroke];
         
         UIColor *fill = [UIColor whiteColor];
-        shapeLayer.strokeStart = 0.0;
-        shapeLayer.strokeColor = fill.CGColor;
-        shapeLayer.lineWidth = 5.0;
-        shapeLayer.lineJoin = kCALineJoinMiter;
-        shapeLayer.lineDashPattern = @[@25,@9];
-        shapeLayer.lineDashPhase = 3.0f;
-        shapeLayer.path = path.CGPath;
+        lastLineLayer.strokeStart = 0.0;
+        lastLineLayer.strokeColor = fill.CGColor;
+        lastLineLayer.lineWidth = 5.0;
+        lastLineLayer.lineJoin = kCALineJoinMiter;
+        lastLineLayer.lineDashPattern = @[@25,@9];
+        lastLineLayer.lineDashPhase = 3.0f;
+        lastLineLayer.path = path.CGPath;
         
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        [button addTarget:self action:@selector(query) forControlEvents:UIControlEventTouchUpInside];
-        button.backgroundColor = CORAL;
-        button.layer.cornerRadius = 14;
-        button.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:30];
-        [button setTitle:@"QUERY" forState:UIControlStateNormal];
-        button.titleLabel.textColor = [UIColor whiteColor];
-        button.frame = CGRectMake(0, 0, 322, 115);
-        button.center = CGPointMake(_fromView.center.x, 310);
+        if (!button) {
+            button = [UIButton buttonWithType:UIButtonTypeCustom];
+            [button addTarget:self action:@selector(query) forControlEvents:UIControlEventTouchUpInside];
+            button.backgroundColor = CORAL;
+            button.layer.cornerRadius = 14;
+            button.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:30];
+            [button setTitle:@"QUERY" forState:UIControlStateNormal];
+            button.titleLabel.textColor = [UIColor whiteColor];
+            button.frame = CGRectMake(0, 0, 322, 115);
+            button.center = CGPointMake(_fromView.center.x, 310);
+        }
+        
         [_fromView addSubview:button];
         [_scrollView scrollRectToVisible:CGRectMake(0, 210, self.view.frame.size.width, self.view.frame.size.height) animated:YES];
     }
+}
+
+- (IBAction)clear:(id)sender {
+    apiType = nil; model = nil; action = nil; from = nil;
+    [lastLineLayer removeFromSuperlayer];
+    [button removeFromSuperview];
+    _modelView.alpha = _actionView.alpha = _fromView.alpha = 0;
+    _scrollView.contentSize = CGSizeZero;
+    [selectedAPIView removeFromSuperview];
+    [selectedModelView removeFromSuperview];
+    [selectedActionView removeFromSuperview];
+    [selectedFromView removeFromSuperview];
 }
 
 - (void)addModelBorder {
@@ -248,6 +263,9 @@
 
 - (void)query {
     [GRInstagramModel queryWithModel:model filters:@{} action:action filters:@{} from:from filters:@{}];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, .75 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        [self clear:nil];
+    });
 }
 
 @end

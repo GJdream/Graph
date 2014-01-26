@@ -41,6 +41,8 @@
     UIImageView *fromLogoView;
     UILabel *fromTitle;
     UILabel *fromSubtitle;
+    CAShapeLayer *lastLineLayer;
+    UIButton *button;
 }
 
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -57,4 +59,5 @@
 - (void)actionBorderMask:(BOOL)enabled;
 - (void)fromBorderMask:(BOOL)enabled;
 - (void)addCell:(GRInstructionCell *)cell;
+- (IBAction)clear:(id)sender;
 @end

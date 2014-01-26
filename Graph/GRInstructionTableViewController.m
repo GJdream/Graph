@@ -261,5 +261,11 @@
     return title;
 }
 
-
+- (void)clear {
+    apiType = nil;
+    modelType = nil;
+    actionType = nil;
+    filterLevel = 0;
+    [self.tableView reloadData];
+}
 @end
