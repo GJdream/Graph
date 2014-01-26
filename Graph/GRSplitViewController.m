@@ -25,10 +25,14 @@
     detailController = (GRViewController *)self.viewControllers[1];
     
     masterController = (GRInstructionTableViewController *)[[(UINavigationController *)self.viewControllers[0] childViewControllers] firstObject];
-
+    
 }
 
 - (void)dragged:(UIPanGestureRecognizer *)recognizer {
+    //HACK, still doesn't work properly
+    apiRect = [detailController.apiBorder convertRect:detailController.apiBorder.bounds toView:self.view];
+    modelRect = [detailController.modelBorder convertRect:detailController.modelBorder.bounds toView:self.view];
+
     CGPoint newPoint = [recognizer locationInView:self.view];
     if (recognizer.state == UIGestureRecognizerStateBegan) {
         if (!selectedView) {
@@ -55,20 +59,31 @@
 
     }
     else if (recognizer.state == UIGestureRecognizerStateEnded) {
-        CGRect apiRect = [detailController.apiBorder convertRect:detailController.apiBorder.bounds toView:self.view];
-        CGRect modelRect = [detailController.apiBorder convertRect:detailController.apiBorder.bounds toView:self.view];
         BOOL apiIntersect = CGRectIntersectsRect(selectedView.frame, apiRect);
         BOOL modelIntersect = CGRectIntersectsRect(selectedView.frame, modelRect);
-        if (apiIntersect || modelIntersect) {
+        if (apiIntersect || (modelIntersect && detailController.modelView.alpha == 1)) {
+            CGPoint origin; CGSize size;//for selectedView animation
+//            UIView *b = [[UIView alloc] initWithFrame:apiRect];
+//            b.backgroundColor = [UIColor blackColor];
+//            [self.view addSubview:b];
             if (apiIntersect) {
                 [detailController apiBorderMask:YES];
+                origin = apiRect.origin;
+                size = detailController.apiBorder.frame.size;
             }
             else if (modelIntersect) {
                 [detailController modelBorderMask:YES];
+                origin = modelRect.origin;
+                size = detailController.modelBorder.frame.size;
             }
-            [detailController addCell:(GRInstructionCell *)recognizer.view];
-            [masterController addCell:(GRInstructionCell *)recognizer.view];
-            [selectedView removeFromSuperview];
+            [UIView animateWithDuration:.5 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+                selectedView.frame = CGRectMake(origin.x + BORDER_INSET/2, origin.y + BORDER_INSET/2, size.width - BORDER_INSET, size.height - BORDER_INSET);
+            } completion:^(BOOL completed) {
+                [selectedView removeFromSuperview];
+                [detailController addCell:(GRInstructionCell *)recognizer.view];
+                [masterController addCell:(GRInstructionCell *)recognizer.view];
+
+            }];
         }
 
         else {
@@ -87,17 +102,20 @@
         selectedView.center = CGPointMake(selectedView.center.x + deltaX, selectedView.center.y + deltaY);
         
         [UIView animateWithDuration:.2 animations:^{
-            if (CGRectIntersectsRect(selectedView.frame, [detailController.apiBorder convertRect:detailController.apiBorder.bounds toView:self.view])) {
+            if (CGRectIntersectsRect(selectedView.frame, apiRect)) {
                 selectedView.frame = CGRectMake(selectedView.frame.origin.x, selectedView.frame.origin.y, detailController.apiBorder.frame.size.width - BORDER_INSET, detailController.apiBorder.frame.size.height - BORDER_INSET);
                 [detailController apiBorderMask:YES];
+            }
+            else if (CGRectIntersectsRect(selectedView.frame, modelRect) && detailController.modelView.alpha == 1) {
+                selectedView.frame = CGRectMake(selectedView.frame.origin.x, selectedView.frame.origin.y, detailController.modelBorder.frame.size.width - BORDER_INSET, detailController.modelBorder.frame.size.height - BORDER_INSET);
+                [detailController modelBorderMask:YES];
             }
             else {
                 selectedView.frame = CGRectMake(selectedView.frame.origin.x, selectedView.frame.origin.y, originalRect.size.width, originalRect.size.height);
                 [detailController apiBorderMask:NO];
+                [detailController modelBorderMask:NO];
             }
-        }completion:^(BOOL isCompleted){
-            
-        }];
+        }completion:nil];
         
     }
     initialPoint = newPoint;

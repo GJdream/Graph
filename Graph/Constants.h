@@ -39,7 +39,7 @@ typedef NS_ENUM(NSInteger, FROM_TYPE) {
     kFromUsers
 };
 
-#define BORDER_INSET 13
+#define BORDER_INSET 12
 
 
 #endif

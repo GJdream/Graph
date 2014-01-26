@@ -42,6 +42,7 @@
 		9EE1BEBC1894166A0098BE90 /* comments-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EE1BEBB1894166A0098BE90 /* comments-icon@2x.png */; };
 		9EE1BEBE1894460D0098BE90 /* dotted-line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EE1BEBD1894460D0098BE90 /* dotted-line@2x.png */; };
 		9EE1BEC118948A360098BE90 /* GRInstagramModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EE1BEC018948A360098BE90 /* GRInstagramModel.m */; };
+		9EE1BEC318949FA60098BE90 /* like-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EE1BEC218949FA60098BE90 /* like-icon@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,6 +113,7 @@
 		9EE1BEBD1894460D0098BE90 /* dotted-line@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dotted-line@2x.png"; sourceTree = "<group>"; };
 		9EE1BEBF18948A360098BE90 /* GRInstagramModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRInstagramModel.h; sourceTree = "<group>"; };
 		9EE1BEC018948A360098BE90 /* GRInstagramModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRInstagramModel.m; sourceTree = "<group>"; };
+		9EE1BEC218949FA60098BE90 /* like-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "like-icon@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,6 +193,7 @@
 				9EE1BEB71893FBE60098BE90 /* users-icon@2x.png */,
 				9EE1BEB9189411D60098BE90 /* photos-icon@2x.png */,
 				9EE1BEBB1894166A0098BE90 /* comments-icon@2x.png */,
+				9EE1BEC218949FA60098BE90 /* like-icon@2x.png */,
 				9EE1BEBD1894460D0098BE90 /* dotted-line@2x.png */,
 				9EE1BE491893602F0098BE90 /* Supporting Files */,
 			);
@@ -369,6 +372,7 @@
 				9EE1BEBC1894166A0098BE90 /* comments-icon@2x.png in Resources */,
 				9EE1BEBE1894460D0098BE90 /* dotted-line@2x.png in Resources */,
 				9EE1BE561893602F0098BE90 /* Main.storyboard in Resources */,
+				9EE1BEC318949FA60098BE90 /* like-icon@2x.png in Resources */,
 				9EE1BE8218936D600098BE90 /* instagram-icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

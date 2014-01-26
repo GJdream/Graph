@@ -22,6 +22,12 @@
     UIImageView *APILogoView;
     UILabel *APITitle;
     UILabel *APISubtitle;
+    
+    //Model View
+    UIView *selectedModelView;
+    UIImageView *modelLogoView;
+    UILabel *modelTitle;
+    UILabel *modelSubtitle;
 }
 
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;

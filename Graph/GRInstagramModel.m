@@ -83,4 +83,17 @@
     }
     return actionType;
 }
+
++ (NSArray *)actionsWithModelType:(MODEL_TYPE)modelType {
+    NSArray *actions;
+    switch (modelType) {
+        case kUsers:
+            actions = @[@"Like"];
+            break;
+            
+        default:
+            break;
+    }
+    return actions;
+}
 @end

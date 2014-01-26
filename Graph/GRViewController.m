@@ -84,6 +84,22 @@
             model = [GRInstagramModel modelForType:cell.modelType];
             //TODO try to add filters here `filtersForModelType`
         }
+        if (!selectedModelView) {
+            selectedModelView = [[UIView alloc] initWithFrame:CGRectMake(BORDER_INSET/2, BORDER_INSET/2, _modelBorder.frame.size.width - BORDER_INSET, _modelBorder.frame.size.height - BORDER_INSET)];
+            selectedModelView.backgroundColor = [UIColor colorWithWhite:1 alpha:.7];
+            modelLogoView = [[UIImageView alloc] initWithFrame:CGRectMake(8, 8, 42, 42)];
+            [selectedModelView addSubview:modelLogoView];
+            modelTitle = [[UILabel alloc] initWithFrame:CGRectMake(58, 8, 183, 21)];
+            APITitle.font = [UIFont systemFontOfSize:17];
+            [selectedModelView addSubview:modelTitle];
+            modelSubtitle = [[UILabel alloc] initWithFrame:CGRectMake(58, 29, 239, 21)];
+            modelSubtitle.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:13];
+            [selectedModelView addSubview:modelSubtitle];
+        }
+        modelLogoView.image = [(UIImageView *)[cell viewWithTag:1] image];
+        modelTitle.text = [(UILabel *)[cell viewWithTag:2] text];
+        modelSubtitle.text = [(UILabel *)[cell viewWithTag:3] text];
+        [_modelBorder addSubview:selectedModelView];
         [self addActionBorder];
         
     }
@@ -104,7 +120,7 @@
     _modelView.alpha = 1;
     CAShapeLayer *shapeLayer = [CAShapeLayer layer];
     [_modelView.layer addSublayer:shapeLayer];
-    [self addBorder:shapeLayer offset:703];
+    [self addBorder:shapeLayer offset:10];
 }
 
 - (void)addActionBorder {
@@ -115,13 +131,13 @@
     _actionView.alpha = 1;
     CAShapeLayer *shapeLayer = [CAShapeLayer layer];
     [_actionView.layer addSublayer:shapeLayer];
-    [self addBorder:shapeLayer offset:100];
+    [self addBorder:shapeLayer offset:10];
 }
 
 - (void)addBorder:(CAShapeLayer *)shapeLayer offset:(int)deltaY {
     UIBezierPath *path = [UIBezierPath bezierPath];
-    [path moveToPoint:CGPointMake(0, 10)];
-    [path addLineToPoint:CGPointMake(deltaY, 10)];
+    [path moveToPoint:CGPointMake(0, deltaY)];
+    [path addLineToPoint:CGPointMake(703, deltaY)];
     [path stroke];
     
     UIColor *fill = [UIColor whiteColor];

@@ -21,6 +21,9 @@
     
     GRViewController *detailController;
     GRInstructionTableViewController *masterController;
+    
+    CGRect apiRect;
+    CGRect modelRect;
 }
 
 @end

@@ -150,6 +150,11 @@
                 rows = [[GRInstagramModel models] count];
             }
             break;
+        case 2:
+            if (apiType == kInstagram) {
+                rows = [[GRInstagramModel actionsWithModelType:modelType] count];
+            }
+            break;
             
         default:
             rows = 0;
