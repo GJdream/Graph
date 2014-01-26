@@ -240,7 +240,7 @@
 //                    [blur removeFromSuperview];
 //                });
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Enter Username" message:@"Results will be filtered with username" delegate:self cancelButtonTitle:@"Done" otherButtonTitles:nil];
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Enter Phone Number" message:@"Results will be filtered by number." delegate:self cancelButtonTitle:@"Done" otherButtonTitles:nil];
                     alert.alertViewStyle = UIAlertViewStylePlainTextInput;
                     alert.tag = kModel;
                     [alert show];
