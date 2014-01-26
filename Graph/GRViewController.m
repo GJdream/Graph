@@ -84,6 +84,10 @@
             APISubtitle = [[UILabel alloc] initWithFrame:CGRectMake(58, 29, 239, 21)];
             APISubtitle.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:13];
             [selectedAPIView addSubview:APISubtitle];
+            APIFilterText = [[UILabel alloc] initWithFrame:CGRectMake(58, 52, 239, 21)];
+            APIFilterText.text = @"";
+            APIFilterText.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:13];
+            [selectedFromView addSubview:APIFilterText];
         }
         APILogoView.image = [(UIImageView *)[cell viewWithTag:1] image];
         APITitle.text = [(UILabel *)[cell viewWithTag:2] text];
@@ -204,7 +208,23 @@
     }
     else if (cell.cellType == kFilter) {
         if (sectionType == kAPI) {
-            ;
+            if (cell.filterType == kUsername) {
+                UIActivityIndicatorView *aiv = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 45, 45)];
+                aiv.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
+                aiv.center = CGPointMake([[UIApplication sharedApplication] keyWindow].center.x + 160, [[UIApplication sharedApplication] keyWindow].center.y);
+                [[[UIApplication sharedApplication] keyWindow] addSubview:aiv];
+                [aiv startAnimating];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 4 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                    [aiv stopAnimating];
+                    [aiv removeFromSuperview];
+                });
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Enter Username" message:@"Results will be filtered with username" delegate:self cancelButtonTitle:@"Done" otherButtonTitles:nil];
+                    alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+                    alert.tag = kFrom;
+                    [alert show];
+                });
+            }
         }
         else if (sectionType == kModel) {
             ;
@@ -216,7 +236,7 @@
             if (cell.filterType == kLocation) {
                 UIActivityIndicatorView *aiv = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 45, 45)];
                 aiv.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
-                aiv.center = [[UIApplication sharedApplication] keyWindow].center;
+                aiv.center = CGPointMake([[UIApplication sharedApplication] keyWindow].center.x + 160, [[UIApplication sharedApplication] keyWindow].center.y);
                 [[[UIApplication sharedApplication] keyWindow] addSubview:aiv];
                 [aiv startAnimating];
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 4 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
@@ -229,9 +249,6 @@
                     alert.tag = kFrom;
                     [alert show];
                 });
-                
-                
-                
             }
             
         }
@@ -313,10 +330,13 @@
 #pragma mark - UIAlertViewDelegate
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
-    NSString *location = [(UITextField *)[alertView textFieldAtIndex:0] text];
+    NSString *text = [(UITextField *)[alertView textFieldAtIndex:0] text];
     switch (alertView.tag) {
+        case kAPI:
+            APIFilterText.text = [NSString stringWithFormat:@"Username Filter:%@", text];
+            break;
         case kFrom:
-            fromFilterText.text = [NSString stringWithFormat:@"Filter:%@", location];
+            fromFilterText.text = [NSString stringWithFormat:@"Location Filter:%@", text];
             break;
 
     }
