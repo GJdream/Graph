@@ -96,4 +96,23 @@
     }
     return actions;
 }
+
++ (NSArray *)fromsWithAction:(ACTION_TYPE)actionType modelType:(MODEL_TYPE)modelType {
+    NSArray *froms;
+    switch (modelType) {
+            
+        case kUsers:
+            
+            switch (actionType) {
+                case kLiked:
+                    froms = @[@"Photos"];
+                    break;
+            }
+            
+            break;
+            
+
+    }
+    return froms;
+}
 @end

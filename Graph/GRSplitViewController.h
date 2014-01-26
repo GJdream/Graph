@@ -24,6 +24,8 @@
     
     CGRect apiRect;
     CGRect modelRect;
+    CGRect actionRect;
+    CGRect fromRect;
 }
 
 @end

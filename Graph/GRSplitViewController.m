@@ -32,7 +32,7 @@
     //HACK, still doesn't work properly
     apiRect = [detailController.apiBorder convertRect:detailController.apiBorder.bounds toView:self.view];
     modelRect = [detailController.modelBorder convertRect:detailController.modelBorder.bounds toView:self.view];
-
+    actionRect = [detailController.actionBorder convertRect:detailController.actionBorder.bounds toView:self.view];
     CGPoint newPoint = [recognizer locationInView:self.view];
     if (recognizer.state == UIGestureRecognizerStateBegan) {
         if (!selectedView) {
@@ -61,7 +61,8 @@
     else if (recognizer.state == UIGestureRecognizerStateEnded) {
         BOOL apiIntersect = CGRectIntersectsRect(selectedView.frame, apiRect);
         BOOL modelIntersect = CGRectIntersectsRect(selectedView.frame, modelRect);
-        if (apiIntersect || (modelIntersect && detailController.modelView.alpha == 1)) {
+        BOOL actionIntersect = CGRectIntersectsRect(selectedView.frame, actionRect);
+        if (apiIntersect || (modelIntersect && detailController.modelView.alpha == 1) | (actionIntersect && detailController.actionView.alpha == 1)) {
             CGPoint origin; CGSize size;//for selectedView animation
 //            UIView *b = [[UIView alloc] initWithFrame:apiRect];
 //            b.backgroundColor = [UIColor blackColor];
@@ -75,6 +76,11 @@
                 [detailController modelBorderMask:YES];
                 origin = modelRect.origin;
                 size = detailController.modelBorder.frame.size;
+            }
+            else if (actionIntersect) {
+                [detailController actionBorderMask:YES];
+                origin = actionRect.origin;
+                size = detailController.actionBorder.frame.size;
             }
             [UIView animateWithDuration:.5 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
                 selectedView.frame = CGRectMake(origin.x + BORDER_INSET/2, origin.y + BORDER_INSET/2, size.width - BORDER_INSET, size.height - BORDER_INSET);
@@ -110,10 +116,15 @@
                 selectedView.frame = CGRectMake(selectedView.frame.origin.x, selectedView.frame.origin.y, detailController.modelBorder.frame.size.width - BORDER_INSET, detailController.modelBorder.frame.size.height - BORDER_INSET);
                 [detailController modelBorderMask:YES];
             }
+            else if (CGRectIntersectsRect(selectedView.frame, actionRect) && detailController.actionView.alpha == 1) {
+                selectedView.frame = CGRectMake(selectedView.frame.origin.x, selectedView.frame.origin.y, detailController.actionBorder.frame.size.width - BORDER_INSET, detailController.actionBorder.frame.size.height - BORDER_INSET);
+                [detailController actionBorderMask:YES];
+            }
             else {
                 selectedView.frame = CGRectMake(selectedView.frame.origin.x, selectedView.frame.origin.y, originalRect.size.width, originalRect.size.height);
                 [detailController apiBorderMask:NO];
                 [detailController modelBorderMask:NO];
+                [detailController actionBorderMask:NO];
             }
         }completion:nil];
         

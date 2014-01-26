@@ -21,5 +21,6 @@
 + (ACTION_TYPE)actionTypeForIndexPath:(NSIndexPath *)indexPath;
 
 + (NSArray *)actionsWithModelType:(MODEL_TYPE)modelType;
++ (NSArray *)fromsWithAction:(ACTION_TYPE)actionType modelType:(MODEL_TYPE)modelType;
 
 @end

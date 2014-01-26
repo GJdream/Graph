@@ -28,6 +28,18 @@
     UIImageView *modelLogoView;
     UILabel *modelTitle;
     UILabel *modelSubtitle;
+    
+    //Action View
+    UIView *selectedActionView;
+    UIImageView *actionLogoView;
+    UILabel *actionTitle;
+    UILabel *actionSubtitle;
+    
+    //From View
+    UIView *selectedFromView;
+    UIImageView *fromLogoView;
+    UILabel *fromTitle;
+    UILabel *fromSubtitle;
 }
 
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -36,8 +48,11 @@
 @property (strong, nonatomic) IBOutlet UIImageView *modelBorder;
 @property (strong, nonatomic) IBOutlet UIView *actionView;
 @property (strong, nonatomic) IBOutlet UIImageView *actionBorder;
+@property (strong, nonatomic) IBOutlet UIView *fromView;
+@property (strong, nonatomic) IBOutlet UIImageView *fromBorder;
 
 - (void)apiBorderMask:(BOOL)enabled;
 - (void)modelBorderMask:(BOOL)enabled;
+- (void)actionBorderMask:(BOOL)enabled;
 - (void)addCell:(GRInstructionCell *)cell;
 @end

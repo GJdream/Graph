@@ -28,7 +28,7 @@
     if ([GRModel sharedInstance].instagramConnected && apiType == kInstagram) {
         [self addModelBorder];
     }
-    _modelView.alpha = _actionView.alpha = 0;
+    _modelView.alpha = _actionView.alpha = _fromView.alpha = 0;
 //    [self addModelBorder];
 }
 
@@ -53,6 +53,10 @@
 
 - (void)modelBorderMask:(BOOL)enabled {
     _modelBorder.image = enabled ? [self maskedImageNamed:@"api-border.png" color:CORAL] : [UIImage imageNamed:@"api-border.png"];
+}
+
+- (void)actionBorderMask:(BOOL)enabled {
+    _actionBorder.image = enabled ? [self maskedImageNamed:@"api-border.png" color:CORAL] : [UIImage imageNamed:@"api-border.png"];
 }
 
 - (void)addCell:(GRInstructionCell *)cell {
@@ -108,7 +112,50 @@
         if (apiType == kInstagram) {
             action = [GRInstagramModel actionForType:cell.actionType];
         }
+        if (!selectedActionView) {
+            selectedActionView = [[UIView alloc] initWithFrame:CGRectMake(BORDER_INSET/2, BORDER_INSET/2, _modelBorder.frame.size.width - BORDER_INSET, _modelBorder.frame.size.height - BORDER_INSET)];
+            selectedActionView.backgroundColor = [UIColor colorWithWhite:1 alpha:.7];
+            actionLogoView = [[UIImageView alloc] initWithFrame:CGRectMake(8, 8, 42, 42)];
+            [selectedActionView addSubview:actionLogoView];
+            actionTitle = [[UILabel alloc] initWithFrame:CGRectMake(58, 8, 183, 21)];
+            actionTitle.font = [UIFont systemFontOfSize:17];
+            [selectedActionView addSubview:actionTitle];
+            actionSubtitle = [[UILabel alloc] initWithFrame:CGRectMake(58, 29, 239, 21)];
+            actionSubtitle.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:13];
+            [selectedActionView addSubview:actionSubtitle];
+        }
+        actionLogoView.image = [(UIImageView *)[cell viewWithTag:1] image];
+        actionTitle.text = [(UILabel *)[cell viewWithTag:2] text];
+        actionSubtitle.text = [(UILabel *)[cell viewWithTag:3] text];
+        [_actionBorder addSubview:selectedActionView];
+        _scrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height + 50);
+        [self addFromBorder];
+        [_scrollView scrollRectToVisible:CGRectMake(0, 50, self.view.frame.size.width, self.view.frame.size.height) animated:YES];
+    }
+    else if (cell.cellType == kAction){
         
+        if (apiType == kInstagram) {
+            action = [GRInstagramModel actionForType:cell.actionType];
+        }
+        if (!selectedActionView) {
+            selectedActionView = [[UIView alloc] initWithFrame:CGRectMake(BORDER_INSET/2, BORDER_INSET/2, _modelBorder.frame.size.width - BORDER_INSET, _modelBorder.frame.size.height - BORDER_INSET)];
+            selectedActionView.backgroundColor = [UIColor colorWithWhite:1 alpha:.7];
+            actionLogoView = [[UIImageView alloc] initWithFrame:CGRectMake(8, 8, 42, 42)];
+            [selectedActionView addSubview:actionLogoView];
+            actionTitle = [[UILabel alloc] initWithFrame:CGRectMake(58, 8, 183, 21)];
+            actionTitle.font = [UIFont systemFontOfSize:17];
+            [selectedActionView addSubview:actionTitle];
+            actionSubtitle = [[UILabel alloc] initWithFrame:CGRectMake(58, 29, 239, 21)];
+            actionSubtitle.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:13];
+            [selectedActionView addSubview:actionSubtitle];
+        }
+        actionLogoView.image = [(UIImageView *)[cell viewWithTag:1] image];
+        actionTitle.text = [(UILabel *)[cell viewWithTag:2] text];
+        actionSubtitle.text = [(UILabel *)[cell viewWithTag:3] text];
+        [_actionBorder addSubview:selectedActionView];
+        _scrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height + 50);
+        [self addFromBorder];
+        [_scrollView scrollRectToVisible:CGRectMake(0, 50, self.view.frame.size.width, self.view.frame.size.height) animated:YES];
     }
 }
 
@@ -120,7 +167,7 @@
     _modelView.alpha = 1;
     CAShapeLayer *shapeLayer = [CAShapeLayer layer];
     [_modelView.layer addSublayer:shapeLayer];
-    [self addBorder:shapeLayer offset:10];
+    [self addBorder:shapeLayer];
 }
 
 - (void)addActionBorder {
@@ -131,13 +178,24 @@
     _actionView.alpha = 1;
     CAShapeLayer *shapeLayer = [CAShapeLayer layer];
     [_actionView.layer addSublayer:shapeLayer];
-    [self addBorder:shapeLayer offset:10];
+    [self addBorder:shapeLayer];
 }
 
-- (void)addBorder:(CAShapeLayer *)shapeLayer offset:(int)deltaY {
+- (void)addFromBorder {
+    _fromView.transform = CGAffineTransformMakeScale(.2, .2);
+    [UIView animateWithDuration:.3 animations:^{
+        _fromView.transform = CGAffineTransformIdentity;
+    }completion:nil];
+    _fromView.alpha = 1;
+    CAShapeLayer *shapeLayer = [CAShapeLayer layer];
+    [_fromView.layer addSublayer:shapeLayer];
+    [self addBorder:shapeLayer];
+}
+
+- (void)addBorder:(CAShapeLayer *)shapeLayer {
     UIBezierPath *path = [UIBezierPath bezierPath];
-    [path moveToPoint:CGPointMake(0, deltaY)];
-    [path addLineToPoint:CGPointMake(703, deltaY)];
+    [path moveToPoint:CGPointMake(0, 10)];
+    [path addLineToPoint:CGPointMake(703, 10)];
     [path stroke];
     
     UIColor *fill = [UIColor whiteColor];

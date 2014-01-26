@@ -155,6 +155,11 @@
                 rows = [[GRInstagramModel actionsWithModelType:modelType] count];
             }
             break;
+        case 3:
+            if (apiType == kInstagram) {
+                rows = [[GRInstagramModel fromsWithAction:action modelType:modelType] count];
+            }
+            break;
             
         default:
             rows = 0;
@@ -194,7 +199,7 @@
             [self makeActionCell:cell cellType:[GRInstagramModel actionTypeForIndexPath:indexPath]];
         }
         
-        cell.cellType = kModel;
+        cell.cellType = kAction;
     }
     UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self.parentViewController.parentViewController action:@selector(dragged:)];
     [cell addGestureRecognizer:panGesture];
