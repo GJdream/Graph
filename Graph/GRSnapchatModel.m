@@ -57,7 +57,7 @@
     FILTER_TYPE filterType;
     switch (indexPath.row) {
         case 0:
-            filterType = kUsername;
+            filterType = kNumber;
             break;
     }
     return filterType;
@@ -113,7 +113,7 @@
                 case kBestFriend:
                     switch (fromType) {
                         case kMe:
-                            filters = @[@"Username"];
+                            filters = @[@"Number"];
                             break;
                     }
                     break;

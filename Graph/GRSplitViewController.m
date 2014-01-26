@@ -24,6 +24,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(instagramModal) name:@"Instagram" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(snapchatModal) name:@"Snapchat" object:nil];
     detailController = (GRViewController *)self.viewControllers[1];
     masterController = (GRInstructionTableViewController *)[[(UINavigationController *)self.viewControllers[0] childViewControllers] firstObject];
 //    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, .5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{

@@ -48,7 +48,7 @@ typedef NS_ENUM(NSInteger, FROM_TYPE) {
 typedef NS_ENUM(NSInteger, FILTER_TYPE) {
     kNoFilter,
     kLocation,
-    kUsername
+    kNumber
 };
 
 typedef NS_ENUM(NSInteger, RESULTS_TYPE) {

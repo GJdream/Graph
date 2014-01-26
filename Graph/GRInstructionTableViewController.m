@@ -228,9 +228,9 @@
             cell.filterType = kLocation;
             cell = [self makeLocationCell:cell];
             break;
-        case kUsername:
-            cell.filterType = kUsername;
-            cell = [self makeUsernameCell:cell];
+        case kNumber:
+            cell.filterType = kNumber;
+            cell = [self makeNumberCell:cell];
             break;
             
         default:
@@ -249,13 +249,13 @@
     return cell;
 }
 
-- (GRInstructionCell *)makeUsernameCell:(GRInstructionCell *)cell {
+- (GRInstructionCell *)makeNumberCell:(GRInstructionCell *)cell {
     UIImageView *logoView = (UIImageView *)[cell viewWithTag:1];
     logoView.image = [UIImage imageNamed:@"username-icon.png"];
     UILabel *title = (UILabel *)[cell viewWithTag:2];
-    title.text = @"Username";
+    title.text = @"Number";
     UILabel *subtitle = (UILabel *)[cell viewWithTag:3];
-    subtitle.text = @"Filter with usernames.";
+    subtitle.text = @"Filter by phone number.";
     return cell;
 }
 

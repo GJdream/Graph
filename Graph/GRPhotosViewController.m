@@ -42,6 +42,41 @@
         [_collectionView reloadData];
 
     }
+    else {
+        values = @[@{@"Name": @"Wajahat Siddiqui", @"Phone Number" : @"240-246-4945", @"Username" : @"agentwaj@gmail.com"}];
+        [_collectionView removeFromSuperview];
+        
+        UILabel *name = [[UILabel alloc] initWithFrame:CGRectMake(30, 90, 150, 21)];
+        name.text = @"Wajahat Siddiqui";
+        name.textColor = [UIColor blackColor];
+        name.font = [UIFont systemFontOfSize:17];
+        [self.view addSubview:name];
+        
+        UILabel *username = [[UILabel alloc] initWithFrame:CGRectMake(30, 115, 150, 21)];
+        username.text = @"agentwaj@gmail.com";
+        username.textColor = [UIColor blackColor];
+        username.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:16];
+        [self.view addSubview:username];
+        
+        UILabel *number = [[UILabel alloc] initWithFrame:CGRectMake(30, 141, 150, 21)];
+        number.text = @"240-246-4945";
+        number.textColor = [UIColor blackColor];
+        number.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:16];
+        [self.view addSubview:number];
+        
+        UIView *border = [[UIView alloc] initWithFrame:CGRectMake(10, 75, 180, 105)];
+        border.layer.cornerRadius = 6;
+        border.layer.borderColor = [UIColor blackColor].CGColor;
+        border.layer.borderWidth = 4.0f;
+        [self.view addSubview:border];
+//        NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/users/29174454?access_token=%@",INSTAGRAM_API_URL,[[NSUserDefaults standardUserDefaults] objectForKey:@"ACCESS_TOKEN"]]]];
+//        NSLog(@"URL:%@", [NSString stringWithFormat:@"%@/users/29174454?access_token=",[[NSUserDefaults standardUserDefaults] objectForKey:@"ACCESS_TOKEN"]]);
+//        // Here you can handle response as well
+//        if (data) {
+//            NSDictionary *dictResponse = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+//            NSLog(@"Response : %@",dictResponse);
+//        }
+    }
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -56,16 +91,13 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewCell *cell = [_collectionView dequeueReusableCellWithReuseIdentifier:@"Photo" forIndexPath:indexPath];
-//    [cell setBackgroundColor:[UIColor clearColor]];
     NSDictionary *dict = values[indexPath.row];
-//    UIImageView *imageView = (UIImageView *)[cell viewWithTag:1];
-//    NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://upload.wikimedia.org/wikipedia/commons/thumb/4/47/PNG_transparency_demonstration_1.png/280px-PNG_transparency_demonstration_1.png"]];
-//    imageView.image = [UIImage imageWithData:data];
-//    [imageView setImageWithURL:[NSURL URLWithString:@"http://upload.wikimedia.org/wikipedia/commons/thumb/4/47/PNG_transparency_demonstration_1.png/280px-PNG_transparency_demonstration_1.png"]];
-    UIImageView *imageView = (UIImageView *)[cell viewWithTag:3];
-    imageView.image = [UIImage imageNamed:dict[@"image"]];
-    UILabel *label = (UILabel *)[cell viewWithTag:2];
-    label.text = dict[@"name"];
+    if (_resultsType == kInstagram) {
+        UIImageView *imageView = (UIImageView *)[cell viewWithTag:3];
+        imageView.image = [UIImage imageNamed:dict[@"image"]];
+        UILabel *label = (UILabel *)[cell viewWithTag:2];
+        label.text = dict[@"name"];
+    }
     
     return cell;
 }

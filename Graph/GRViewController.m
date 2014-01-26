@@ -216,7 +216,7 @@
             ;
         }
         else if (sectionType == kModel) {
-            if (cell.filterType == kUsername) {
+            if (cell.filterType == kNumber) {
                 if (!blur) {
                     blur = [[FXBlurView alloc] initWithFrame:[[UIApplication sharedApplication] keyWindow].bounds];
                     blur.blurRadius = 15;
@@ -352,6 +352,7 @@
         [GRInstagramModel queryWithModel:model filters:@{} action:action filters:@{} from:from filters:@{}];
     }
     else if (apiType == kSnapchat) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"Snapchat" object:nil];
     }
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
         [self clear:nil];
@@ -372,7 +373,7 @@
     NSString *text = [(UITextField *)[alertView textFieldAtIndex:0] text];
     switch (alertView.tag) {
         case kModel:
-            modelFilterText.text = [NSString stringWithFormat:@"Username Filter:%@", text];
+            modelFilterText.text = [NSString stringWithFormat:@"Phone Number Filter:%@", text];
             break;
         case kFrom:
             fromFilterText.text = [NSString stringWithFormat:@"Location Filter:%@", text];
