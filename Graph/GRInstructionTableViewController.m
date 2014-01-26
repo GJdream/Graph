@@ -128,6 +128,10 @@
 
 - (void)makeActionCell:(GRInstructionCell *)cell cellType:(ACTION_TYPE)actionType {
     switch (actionType) {
+        case kBestFriend:
+            cell.actionType = kBestFriend;
+            cell = [self makeBestFriendCell:cell];
+            break;
         case kLiked:
             cell.actionType = kLiked;
             cell = [self makeLikeCell:cell];
@@ -172,6 +176,17 @@
     title.text = @"Screenshot";
     UILabel *subtitle = (UILabel *)[cell viewWithTag:3];
     subtitle.text = @"That were saved.";
+    return cell;
+}
+
+
+- (GRInstructionCell *)makeBestFriendCell:(GRInstructionCell *)cell {
+    UIImageView *logoView = (UIImageView *)[cell viewWithTag:1];
+    logoView.image = [UIImage imageNamed:@"bestfriend-icon.png"];
+    UILabel *title = (UILabel *)[cell viewWithTag:2];
+    title.text = @"Best Friend";
+    UILabel *subtitle = (UILabel *)[cell viewWithTag:3];
+    subtitle.text = @"Friends who are closest to you.";
     return cell;
 }
 

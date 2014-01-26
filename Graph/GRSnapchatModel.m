@@ -18,6 +18,9 @@
         case 0:
             modelType = kPhotos;
             break;
+        case 1:
+            modelType = kUsers;
+            break;
     }
     return modelType;
 }
@@ -27,9 +30,12 @@
     ACTION_TYPE actionType;
     switch (indexPath.row) {
         case 0:
-            actionType = kSent;
+            actionType = kBestFriend;
             break;
         case 1:
+            actionType = kSent;
+            break;
+        case 2:
             actionType = kScreenshot;
             break;
     }
@@ -60,7 +66,7 @@
 #pragma mark - Counts
 + (NSArray *)models
 {
-    return @[@"Pictures"];
+    return @[@"Pictures", @"Users"];
 }
 
 + (NSArray *)actionsWithModelType:(MODEL_TYPE)modelType
@@ -71,7 +77,8 @@
             actions = @[@"Sent", @"Screenshot"];
             break;
             
-        default:
+        case kUsers:
+            actions = @[@"Best Friend", @"Sent", @"Screenshot"];
             break;
     }
     return actions;
@@ -82,10 +89,10 @@
     NSArray *froms;
     switch (modelType) {
             
-        case kPhotos:
+        case kUsers:
             
             switch (actionType) {
-                case kSent:
+                case kBestFriend:
                     froms = @[@"Me"];
                     break;
             }
@@ -100,10 +107,10 @@
     NSArray *filters;
     switch (modelType) {
             
-        case kPhotos:
+        case kUsers:
             
             switch (actionType) {
-                case kSent:
+                case kBestFriend:
                     switch (fromType) {
                         case kMe:
                             filters = @[@"Username"];

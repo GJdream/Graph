@@ -72,6 +72,7 @@
 		9EE1BF1E189557CE0098BE90 /* username-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EE1BF1D189557CE0098BE90 /* username-icon@2x.png */; };
 		9EE1BF2018955B210098BE90 /* screenshot-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EE1BF1F18955B210098BE90 /* screenshot-icon@2x.png */; };
 		9EE1BF2418955CD30098BE90 /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EE1BF2318955CD30098BE90 /* FXBlurView.m */; };
+		9EE1BF26189583BF0098BE90 /* bestfriend-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EE1BF25189583BF0098BE90 /* bestfriend-icon@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -175,6 +176,7 @@
 		9EE1BF1F18955B210098BE90 /* screenshot-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screenshot-icon@2x.png"; sourceTree = "<group>"; };
 		9EE1BF2218955CD30098BE90 /* FXBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXBlurView.h; sourceTree = "<group>"; };
 		9EE1BF2318955CD30098BE90 /* FXBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXBlurView.m; sourceTree = "<group>"; };
+		9EE1BF25189583BF0098BE90 /* bestfriend-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bestfriend-icon@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -264,6 +266,7 @@
 				9EE1BF1D189557CE0098BE90 /* username-icon@2x.png */,
 				9EE1BF1B189556830098BE90 /* me-icon@2x.png */,
 				9EE1BF1F18955B210098BE90 /* screenshot-icon@2x.png */,
+				9EE1BF25189583BF0098BE90 /* bestfriend-icon@2x.png */,
 				9EE1BEBD1894460D0098BE90 /* dotted-line@2x.png */,
 				9EE1BE491893602F0098BE90 /* Supporting Files */,
 			);
@@ -485,6 +488,7 @@
 				9EE1BEFA1895242F0098BE90 /* ac.jpg in Resources */,
 				9EE1BF051895242F0098BE90 /* ks.jpg in Resources */,
 				9EE1BF001895242F0098BE90 /* e.jpg in Resources */,
+				9EE1BF26189583BF0098BE90 /* bestfriend-icon@2x.png in Resources */,
 				9EE1BF061895242F0098BE90 /* r.jpg in Resources */,
 				9EE1BF021895242F0098BE90 /* jj.jpg in Resources */,
 				9EE1BF0F189526860098BE90 /* gma.jpg in Resources */,

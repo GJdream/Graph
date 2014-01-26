@@ -185,6 +185,9 @@
     initialPoint = newPoint;
 }
 
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
+}
 - (void)turnOffMask {
     //TODO: figure out how to turn mask off when slide off
     if (detailController.APIMaskON) {
