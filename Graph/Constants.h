@@ -20,7 +20,8 @@ typedef NS_ENUM(NSInteger, CELL_TYPE) {
 
 typedef NS_ENUM(NSInteger, API_TYPE) {
     kNoAPI,
-    kInstagram
+    kInstagram,
+    kSnapchat
 };
 
 typedef NS_ENUM(NSInteger, MODEL_TYPE) {
@@ -32,17 +33,20 @@ typedef NS_ENUM(NSInteger, MODEL_TYPE) {
 
 typedef NS_ENUM(NSInteger, ACTION_TYPE) {
     kNoAction,
-    kLiked
+    kLiked,
+    kSent
 };
 
 typedef NS_ENUM(NSInteger, FROM_TYPE) {
     kNoOne,
-    kFromPhotos
+    kFromPhotos,
+    kMe
 };
 
 typedef NS_ENUM(NSInteger, FILTER_TYPE) {
     kNoFilter,
-    kLocation
+    kLocation,
+    kUsername
 };
 
 typedef NS_ENUM(NSInteger, RESULTS_TYPE) {

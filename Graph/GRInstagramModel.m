@@ -35,56 +35,6 @@
 //    }
 //}
 
-+ (NSArray *)models
-{
-    return @[@"Users", @"Photos", @"Comments"];
-}
-
-/*+ (NSString *)modelForType:(MODEL_TYPE)modelType {
-    NSString *model;
-    switch (modelType) {
-        case kUsers:
-            model = @"Users";
-            break;
-        case kPhotos:
-            model = @"Photos";
-            break;
-        case kComments:
-            model = @"Comments";
-            break;
-            
-        default:
-            break;
-    }
-    return model;
-}
-
-+ (NSString *)actionForType:(ACTION_TYPE)actionType {
-    NSString *action;
-    switch (actionType) {
-        case kLiked:
-            action = @"Likes";
-            break;
-            
-        default:
-            break;
-    }
-    return action;
-}
-
-+ (NSString *)fromForType:(FROM_TYPE)fromType {
-    NSString *from;
-    switch (fromType) {
-        case kFromPhotos:
-            from = @"Photos";
-            break;
-            
-        default:
-            break;
-    }
-    return from;
-}
- */
 
 + (MODEL_TYPE)modelTypeForIndexPath:(NSIndexPath *)indexPath
 {
@@ -135,6 +85,11 @@
     return filterType;
 }
 
++ (NSArray *)models
+{
+    return @[@"Users", @"Photos", @"Comments"];
+}
+
 + (NSArray *)actionsWithModelType:(MODEL_TYPE)modelType
 {
     NSArray *actions;
@@ -167,7 +122,8 @@
     return froms;
 }
 
-+ (NSArray *)filtersWithFrom:(FROM_TYPE)fromType withAction:(ACTION_TYPE)actionType modelType:(MODEL_TYPE)modelType {
++ (NSArray *)filtersWithFrom:(FROM_TYPE)fromType withAction:(ACTION_TYPE)actionType modelType:(MODEL_TYPE)modelType
+{
     NSArray *filters;
     switch (modelType) {
             

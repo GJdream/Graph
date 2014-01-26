@@ -69,6 +69,10 @@
         if (apiType == kInstagram) {
             if ([GRInstagramModel authorizeInstagram]) [self addModelBorder];
         }
+        else if (apiType == kSnapchat) {
+            //authorize Snapchat
+            [self addModelBorder];
+        }
         if (!selectedAPIView) {
             selectedAPIView = [[UIView alloc] initWithFrame:CGRectMake(BORDER_INSET/2, BORDER_INSET/2, _apiBorder.frame.size.width - BORDER_INSET, _apiBorder.frame.size.height - BORDER_INSET)];
             selectedAPIView.backgroundColor = [UIColor colorWithWhite:1 alpha:.7];

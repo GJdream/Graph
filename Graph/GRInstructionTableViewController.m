@@ -9,6 +9,7 @@
 #import "GRInstructionTableViewController.h"
 
 #import "GRInstagramModel.h"
+#import "GRSnapchatModel.h"
 
 #import "GRInstructionCell.h"
 
@@ -131,6 +132,10 @@
             cell.actionType = kLiked;
             cell = [self makeLikeCell:cell];
             break;
+        case kSent:
+            cell.actionType = kSent;
+            cell = [self makeSentCell:cell];
+            break;
             
         default:
             break;
@@ -144,6 +149,16 @@
     title.text = @"Like";
     UILabel *subtitle = (UILabel *)[cell viewWithTag:3];
     subtitle.text = @"That has liked.";
+    return cell;
+}
+
+- (GRInstructionCell *)makeSentCell:(GRInstructionCell *)cell {
+    UIImageView *logoView = (UIImageView *)[cell viewWithTag:1];
+    logoView.image = [UIImage imageNamed:@"sent-icon.png"];
+    UILabel *title = (UILabel *)[cell viewWithTag:2];
+    title.text = @"Sent";
+    UILabel *subtitle = (UILabel *)[cell viewWithTag:3];
+    subtitle.text = @"That were sent.";
     return cell;
 }
 
@@ -169,6 +184,10 @@
             cell.filterType = kLocation;
             cell = [self makeLocationCell:cell];
             break;
+        case kUsername:
+            cell.filterType = kUsername;
+            cell = [self makeUsernameCell:cell];
+            break;
             
         default:
             break;
@@ -177,6 +196,16 @@
 
 
 - (GRInstructionCell *)makeLocationCell:(GRInstructionCell *)cell {
+    UIImageView *logoView = (UIImageView *)[cell viewWithTag:1];
+    logoView.image = [UIImage imageNamed:@"location-icon.png"];
+    UILabel *title = (UILabel *)[cell viewWithTag:2];
+    title.text = @"Location";
+    UILabel *subtitle = (UILabel *)[cell viewWithTag:3];
+    subtitle.text = @"Filter with locations";
+    return cell;
+}
+
+- (GRInstructionCell *)makeUsernameCell:(GRInstructionCell *)cell {
     UIImageView *logoView = (UIImageView *)[cell viewWithTag:1];
     logoView.image = [UIImage imageNamed:@"location-icon.png"];
     UILabel *title = (UILabel *)[cell viewWithTag:2];
@@ -199,21 +228,30 @@
     int rows = 1;
     switch (section) {
         case 0:
-            rows = 1;
+            rows = 2;
             break;
         case 1:
             if (apiType == kInstagram) {
                 rows = [[GRInstagramModel models] count];
+            }
+            else if (apiType == kSnapchat) {
+                rows = [[GRSnapchatModel models] count];
             }
             break;
         case 2:
             if (apiType == kInstagram) {
                 rows = [[GRInstagramModel actionsWithModelType:modelType] count];
             }
+            else if (apiType == kSnapchat) {
+                rows = [[GRSnapchatModel actionsWithModelType:modelType] count];
+            }
             break;
         case 3:
             if (apiType == kInstagram) {
                 rows = [[GRInstagramModel fromsWithAction:actionType modelType:modelType] count];
+            }
+            else if (apiType == kSnapchat) {
+                rows = [[GRSnapchatModel fromsWithAction:actionType modelType:modelType] count];
             }
             break;
         case 4:
@@ -245,12 +283,24 @@
             subtitle.text = @"Capture and Share the World's Moments.";
             cell.apiType = kInstagram;
         }
+        else if (indexPath.row == 1) {
+            UIImageView *logoView = (UIImageView *)[cell viewWithTag:1];
+            logoView.image = [UIImage imageNamed:@"snapchat-icon.png"];
+            UILabel *title = (UILabel *)[cell viewWithTag:2];
+            title.text = @"Snapchat";
+            UILabel *subtitle = (UILabel *)[cell viewWithTag:3];
+            subtitle.text = @"Experience a totally new way to share.";
+            cell.apiType = kSnapchat;
+        }
         cell.cellType = kAPI;
     }
     else if (indexPath.section == 1) {
         //models receivable
         if (apiType == kInstagram) {
             [self makeModelCell:cell cellType:[GRInstagramModel modelTypeForIndexPath:indexPath]];
+        }
+        else if (apiType == kSnapchat) {
+            [self makeModelCell:cell cellType:[GRSnapchatModel modelTypeForIndexPath:indexPath]];
         }
         
         cell.cellType = kModel;
@@ -259,6 +309,9 @@
         if (apiType == kInstagram) {
             [self makeActionCell:cell cellType:[GRInstagramModel actionTypeForIndexPath:indexPath]];
         }
+        else if (apiType == kSnapchat) {
+            [self makeActionCell:cell cellType:[GRSnapchatModel actionTypeForIndexPath:indexPath]];
+        }
         
         cell.cellType = kAction;
     }
@@ -266,12 +319,18 @@
         if (apiType == kInstagram) {
             [self makeFromCell:cell cellType:[GRInstagramModel fromTypeForIndexPath:indexPath]];
         }
+        else if (apiType == kSnapchat) {
+            [self makeFromCell:cell cellType:[GRSnapchatModel fromTypeForIndexPath:indexPath]];
+        }
         
         cell.cellType = kFrom;
     }
     else if (indexPath.section == 4) {
         if (apiType == kInstagram) {
             [self makeFilterCell:cell cellType:[GRInstagramModel filterTypeForIndexPath:indexPath]];
+        }
+        else if (apiType == kSnapchat) {
+            [self makeFilterCell:cell cellType:[GRSnapchatModel filterTypeForIndexPath:indexPath]];
         }
         
         cell.cellType = kFilter;
@@ -295,7 +354,7 @@
             title = @"Actions";
             break;
         case 3:
-            title = @"From";
+            title = apiType == kInstagram ? @"From" : @"To";
             break;
         case 4:
             title = @"Filter";

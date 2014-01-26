@@ -148,7 +148,6 @@
         selectedView.center = CGPointMake(selectedView.center.x + deltaX, selectedView.center.y + deltaY);
         
         [UIView animateWithDuration:.2 animations:^{
-            [self turnOffMask];
             if (CGRectIntersectsRect(selectedView.frame, apiRect)) {
                 selectedView.frame = CGRectMake(selectedView.frame.origin.x, selectedView.frame.origin.y, detailController.apiBorder.frame.size.width - BORDER_INSET, detailController.apiBorder.frame.size.height - BORDER_INSET);
                 [detailController apiBorderMask:YES];
@@ -166,6 +165,7 @@
                 [detailController fromBorderMask:YES];
             }
             else {
+                [self turnOffMask];
                 selectedView.frame = CGRectMake(selectedView.frame.origin.x, selectedView.frame.origin.y, originalRect.size.width, originalRect.size.height);
             }
         }completion:nil];
@@ -175,6 +175,7 @@
 }
 
 - (void)turnOffMask {
+    //TODO: figure out how to turn mask off when slide off
     [detailController apiBorderMask:NO];
     [detailController modelBorderMask:NO];
     [detailController actionBorderMask:NO];

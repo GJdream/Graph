@@ -65,6 +65,9 @@
 		9EE1BF0E189526860098BE90 /* dj.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9EE1BF0B189526860098BE90 /* dj.jpg */; };
 		9EE1BF0F189526860098BE90 /* gma.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9EE1BF0C189526860098BE90 /* gma.jpg */; };
 		9EE1BF11189534150098BE90 /* location-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EE1BF10189534150098BE90 /* location-icon@2x.png */; };
+		9EE1BF1318954AE00098BE90 /* snapchat-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EE1BF1218954AE00098BE90 /* snapchat-icon@2x.png */; };
+		9EE1BF1618954C3C0098BE90 /* GRSnapchatModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EE1BF1518954C3C0098BE90 /* GRSnapchatModel.m */; };
+		9EE1BF1A189551110098BE90 /* sent-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EE1BF19189551110098BE90 /* sent-icon@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -159,6 +162,10 @@
 		9EE1BF0B189526860098BE90 /* dj.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = dj.jpg; sourceTree = "<group>"; };
 		9EE1BF0C189526860098BE90 /* gma.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = gma.jpg; sourceTree = "<group>"; };
 		9EE1BF10189534150098BE90 /* location-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location-icon@2x.png"; sourceTree = "<group>"; };
+		9EE1BF1218954AE00098BE90 /* snapchat-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "snapchat-icon@2x.png"; sourceTree = "<group>"; };
+		9EE1BF1418954C3C0098BE90 /* GRSnapchatModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRSnapchatModel.h; sourceTree = "<group>"; };
+		9EE1BF1518954C3C0098BE90 /* GRSnapchatModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRSnapchatModel.m; sourceTree = "<group>"; };
+		9EE1BF19189551110098BE90 /* sent-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sent-icon@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -243,6 +250,8 @@
 				9EE1BEBB1894166A0098BE90 /* comments-icon@2x.png */,
 				9EE1BEC218949FA60098BE90 /* like-icon@2x.png */,
 				9EE1BF10189534150098BE90 /* location-icon@2x.png */,
+				9EE1BF1218954AE00098BE90 /* snapchat-icon@2x.png */,
+				9EE1BF19189551110098BE90 /* sent-icon@2x.png */,
 				9EE1BEBD1894460D0098BE90 /* dotted-line@2x.png */,
 				9EE1BE491893602F0098BE90 /* Supporting Files */,
 			);
@@ -285,6 +294,8 @@
 				9EE1BEC51894F7F80098BE90 /* GRSession.m */,
 				9EE1BEBF18948A360098BE90 /* GRInstagramModel.h */,
 				9EE1BEC018948A360098BE90 /* GRInstagramModel.m */,
+				9EE1BF1418954C3C0098BE90 /* GRSnapchatModel.h */,
+				9EE1BF1518954C3C0098BE90 /* GRSnapchatModel.m */,
 			);
 			name = Singletons;
 			sourceTree = "<group>";
@@ -441,8 +452,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				9EE1BF081895242F0098BE90 /* sb.jpg in Resources */,
+				9EE1BF1318954AE00098BE90 /* snapchat-icon@2x.png in Resources */,
 				9EE1BF11189534150098BE90 /* location-icon@2x.png in Resources */,
 				9EE1BEFB1895242F0098BE90 /* at.jpg in Resources */,
+				9EE1BF1A189551110098BE90 /* sent-icon@2x.png in Resources */,
 				9EE1BF011895242F0098BE90 /* j.jpg in Resources */,
 				9EE1BEF91895242F0098BE90 /* a.jpg in Resources */,
 				9EE1BEFA1895242F0098BE90 /* ac.jpg in Resources */,
@@ -501,6 +514,7 @@
 				9EE1BEE61895140B0098BE90 /* UIImageView+AFNetworking.m in Sources */,
 				9EE1BEE41895140B0098BE90 /* AFURLConnectionOperation.m in Sources */,
 				9EE1BEE51895140B0098BE90 /* AFXMLRequestOperation.m in Sources */,
+				9EE1BF1618954C3C0098BE90 /* GRSnapchatModel.m in Sources */,
 				9EE1BEE01895140B0098BE90 /* AFImageRequestOperation.m in Sources */,
 				9EE1BEE31895140B0098BE90 /* AFPropertyListRequestOperation.m in Sources */,
 				9EE1BEE11895140B0098BE90 /* AFJSONRequestOperation.m in Sources */,
