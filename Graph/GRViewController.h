@@ -11,6 +11,8 @@
 #import "Constants.h"
 
 #import "GRInstructionCell.h"
+#import "FXBlurView.h"
+
 
 @interface GRViewController : UIViewController <UIAlertViewDelegate> {
     API_TYPE apiType;
@@ -48,6 +50,8 @@
     CAShapeLayer *lastLineLayer;
     UIButton *button;
     
+    FXBlurView *blur;
+    UIActivityIndicatorView *aiv;
 }
 
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;

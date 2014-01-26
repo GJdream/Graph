@@ -11,7 +11,6 @@
 #import "GRSession.h"
 #import "GRInstagramModel.h"
 
-#import "FXBlurView.h"
 
 
 #define CORAL [UIColor colorWithRed:255/255.0 green:137/255.0 blue:128/255.0 alpha:1]
@@ -218,24 +217,28 @@
         }
         else if (sectionType == kModel) {
             if (cell.filterType == kUsername) {
-                FXBlurView *blur = [[FXBlurView alloc] initWithFrame:[[UIApplication sharedApplication] keyWindow].bounds];
-                blur.blurRadius = 15;
+                if (!blur) {
+                    blur = [[FXBlurView alloc] initWithFrame:[[UIApplication sharedApplication] keyWindow].bounds];
+                    blur.blurRadius = 15;
+                }
                 blur.alpha = 0;
                 [[[UIApplication sharedApplication] keyWindow] addSubview:blur];
                 
-                UIActivityIndicatorView *aiv = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 45, 45)];
-                aiv.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
+                if (aiv) {
+                    aiv = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 45, 45)];
+                    aiv.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
+                }
                 aiv.center = blur.center;
                 [blur addSubview:aiv];
                 [aiv startAnimating];
                 [UIView animateWithDuration:.2 animations:^{
                     blur.alpha = 1;
                 }completion:nil];
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 4 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                    [aiv stopAnimating];
-                    [aiv removeFromSuperview];
-                    [blur removeFromSuperview];
-                });
+//                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 4 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+//                    [aiv stopAnimating];
+//                    [aiv removeFromSuperview];
+//                    [blur removeFromSuperview];
+//                });
                 dispatch_async(dispatch_get_main_queue(), ^{
                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Enter Username" message:@"Results will be filtered with username" delegate:self cancelButtonTitle:@"Done" otherButtonTitles:nil];
                     alert.alertViewStyle = UIAlertViewStylePlainTextInput;
@@ -249,24 +252,23 @@
         }
         else if (sectionType == kFrom) {
             if (cell.filterType == kLocation) {
-                FXBlurView *blur = [[FXBlurView alloc] initWithFrame:[[UIApplication sharedApplication] keyWindow].bounds];
-                blur.blurRadius = 15;
+                if (!blur) {
+                    blur = [[FXBlurView alloc] initWithFrame:[[UIApplication sharedApplication] keyWindow].bounds];
+                    blur.blurRadius = 15;
+                }
                 blur.alpha = 0;
                 [[[UIApplication sharedApplication] keyWindow] addSubview:blur];
                 
-                UIActivityIndicatorView *aiv = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 45, 45)];
-                aiv.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
+                if (aiv) {
+                    aiv = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 45, 45)];
+                    aiv.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
+                }
                 aiv.center = blur.center;
                 [blur addSubview:aiv];
                 [aiv startAnimating];
                 [UIView animateWithDuration:.2 animations:^{
                     blur.alpha = 1;
                 }completion:nil];
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 4 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                    [aiv stopAnimating];
-                    [aiv removeFromSuperview];
-                    [blur removeFromSuperview];
-                });
                 dispatch_async(dispatch_get_main_queue(), ^{
                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Enter Location" message:@"Results will be filtered through location" delegate:self cancelButtonTitle:@"Done" otherButtonTitles:nil];
                     alert.alertViewStyle = UIAlertViewStylePlainTextInput;
@@ -359,6 +361,14 @@
 #pragma mark - UIAlertViewDelegate
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    [UIView animateWithDuration:.2 animations:^{
+        blur.alpha = 0;
+    }completion:^(BOOL completed) {
+        [aiv stopAnimating];
+        [aiv removeFromSuperview];
+        [blur removeFromSuperview];
+        
+    }];
     NSString *text = [(UITextField *)[alertView textFieldAtIndex:0] text];
     switch (alertView.tag) {
         case kModel:
