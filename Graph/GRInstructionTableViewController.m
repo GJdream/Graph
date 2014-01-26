@@ -52,6 +52,12 @@
         [self.tableView reloadData];
         
     }
+    else if (cell.cellType == kAction) {
+        actionType = cell.actionType;
+        filterLevel = 3;
+        [self.tableView reloadData];
+        
+    }
 }
 
 #pragma mark - Model Cell Creation
@@ -130,6 +136,19 @@
     return cell;
 }
 
+#pragma mark - From Cell Creation
+
+- (void)makeFromCell:(GRInstructionCell *)cell cellType:(FROM_TYPE)fromType {
+    switch (fromType) {
+        case kFromPhotos:
+            cell = [self makePhotosCell:cell];
+            break;
+            
+        default:
+            break;
+    }
+}
+
 
 #pragma mark - UITableViewDataSource
 
@@ -157,7 +176,7 @@
             break;
         case 3:
             if (apiType == kInstagram) {
-                rows = [[GRInstagramModel fromsWithAction:action modelType:modelType] count];
+                rows = [[GRInstagramModel fromsWithAction:actionType modelType:modelType] count];
             }
             break;
             
@@ -201,6 +220,13 @@
         
         cell.cellType = kAction;
     }
+    else if (indexPath.section == 3) {
+        if (apiType == kInstagram) {
+            [self makeFromCell:cell cellType:[GRInstagramModel fromTypeForIndexPath:indexPath]];
+        }
+        
+        cell.cellType = kAction;
+    }
     UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self.parentViewController.parentViewController action:@selector(dragged:)];
     [cell addGestureRecognizer:panGesture];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -218,6 +244,9 @@
             break;
         case 2:
             title = @"Actions";
+            break;
+        case 3:
+            title = @"From";
             break;
             
         default:

@@ -36,7 +36,7 @@ typedef NS_ENUM(NSInteger, ACTION_TYPE) {
 
 typedef NS_ENUM(NSInteger, FROM_TYPE) {
     kNoOne,
-    kFromUsers
+    kFromPhotos
 };
 
 #define BORDER_INSET 12

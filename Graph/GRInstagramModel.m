@@ -84,6 +84,16 @@
     return actionType;
 }
 
++ (FROM_TYPE)fromTypeForIndexPath:(NSIndexPath *)indexPath {
+    FROM_TYPE fromType;
+    switch (indexPath.row) {
+        case 0:
+            fromType = kFromPhotos;
+            break;
+    }
+    return fromType;
+}
+
 + (NSArray *)actionsWithModelType:(MODEL_TYPE)modelType {
     NSArray *actions;
     switch (modelType) {

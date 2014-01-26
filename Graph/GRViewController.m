@@ -59,6 +59,10 @@
     _actionBorder.image = enabled ? [self maskedImageNamed:@"api-border.png" color:CORAL] : [UIImage imageNamed:@"api-border.png"];
 }
 
+- (void)fromBorderMask:(BOOL)enabled {
+    _fromBorder.image = enabled ? [self maskedImageNamed:@"api-border.png" color:CORAL] : [UIImage imageNamed:@"api-border.png"];
+}
+
 - (void)addCell:(GRInstructionCell *)cell {
     if (cell.cellType == kAPI) {
         apiType = cell.apiType;

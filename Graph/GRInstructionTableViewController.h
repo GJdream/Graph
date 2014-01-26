@@ -14,6 +14,7 @@
 @interface GRInstructionTableViewController : UITableViewController {
     API_TYPE apiType;
     MODEL_TYPE modelType;
+    ACTION_TYPE actionType;
     int filterLevel;
 }
 - (void)addCell:(GRInstructionCell *)cell;

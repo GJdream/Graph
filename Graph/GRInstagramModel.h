@@ -19,6 +19,7 @@
 
 + (MODEL_TYPE)modelTypeForIndexPath:(NSIndexPath *)indexPath;
 + (ACTION_TYPE)actionTypeForIndexPath:(NSIndexPath *)indexPath;
++ (FROM_TYPE)fromTypeForIndexPath:(NSIndexPath *)indexPath;
 
 + (NSArray *)actionsWithModelType:(MODEL_TYPE)modelType;
 + (NSArray *)fromsWithAction:(ACTION_TYPE)actionType modelType:(MODEL_TYPE)modelType;

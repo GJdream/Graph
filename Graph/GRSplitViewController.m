@@ -33,6 +33,7 @@
     apiRect = [detailController.apiBorder convertRect:detailController.apiBorder.bounds toView:self.view];
     modelRect = [detailController.modelBorder convertRect:detailController.modelBorder.bounds toView:self.view];
     actionRect = [detailController.actionBorder convertRect:detailController.actionBorder.bounds toView:self.view];
+    fromRect = [detailController.fromBorder convertRect:detailController.fromBorder.bounds toView:self.view];
     CGPoint newPoint = [recognizer locationInView:self.view];
     if (recognizer.state == UIGestureRecognizerStateBegan) {
         if (!selectedView) {
@@ -62,7 +63,8 @@
         BOOL apiIntersect = CGRectIntersectsRect(selectedView.frame, apiRect);
         BOOL modelIntersect = CGRectIntersectsRect(selectedView.frame, modelRect);
         BOOL actionIntersect = CGRectIntersectsRect(selectedView.frame, actionRect);
-        if (apiIntersect || (modelIntersect && detailController.modelView.alpha == 1) | (actionIntersect && detailController.actionView.alpha == 1)) {
+        BOOL fromIntersect = CGRectIntersectsRect(selectedView.frame, fromRect);
+        if (apiIntersect || (modelIntersect && detailController.modelView.alpha == 1) || (actionIntersect && detailController.actionView.alpha == 1) || (fromIntersect && detailController.fromView.alpha == 1)) {
             CGPoint origin; CGSize size;//for selectedView animation
 //            UIView *b = [[UIView alloc] initWithFrame:apiRect];
 //            b.backgroundColor = [UIColor blackColor];
@@ -81,6 +83,11 @@
                 [detailController actionBorderMask:YES];
                 origin = actionRect.origin;
                 size = detailController.actionBorder.frame.size;
+            }
+            else if (fromIntersect) {
+                [detailController fromBorderMask:YES];
+                origin = fromRect.origin;
+                size = detailController.fromBorder.frame.size;
             }
             [UIView animateWithDuration:.5 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
                 selectedView.frame = CGRectMake(origin.x + BORDER_INSET/2, origin.y + BORDER_INSET/2, size.width - BORDER_INSET, size.height - BORDER_INSET);

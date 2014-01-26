@@ -54,5 +54,6 @@
 - (void)apiBorderMask:(BOOL)enabled;
 - (void)modelBorderMask:(BOOL)enabled;
 - (void)actionBorderMask:(BOOL)enabled;
+- (void)fromBorderMask:(BOOL)enabled;
 - (void)addCell:(GRInstructionCell *)cell;
 @end
