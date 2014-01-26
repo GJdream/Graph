@@ -352,7 +352,9 @@
         [GRInstagramModel queryWithModel:model filters:@{} action:action filters:@{} from:from filters:@{}];
     }
     else if (apiType == kSnapchat) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"Snapchat" object:nil];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"Snapchat" object:nil];
+        });
     }
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
         [self clear:nil];
