@@ -13,6 +13,7 @@
 #import "Constants.h"
 @interface GRInstructionTableViewController : UITableViewController {
     API_TYPE apiType;
+    MODEL_TYPE modelType;
     int filterLevel;
 }
 - (void)addCell:(GRInstructionCell *)cell;

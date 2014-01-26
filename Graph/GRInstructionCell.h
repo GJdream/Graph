@@ -14,4 +14,5 @@
 @property (nonatomic, assign) CELL_TYPE cellType;
 @property (nonatomic, assign) API_TYPE apiType;
 @property (nonatomic, assign) MODEL_TYPE modelType;
+@property (nonatomic, assign) ACTION_TYPE actionType;
 @end

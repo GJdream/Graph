@@ -9,6 +9,7 @@
 #import "GRViewController.h"
 
 #import "GRModel.h"
+#import "GRInstagramModel.h"
 
 
 #define CORAL [UIColor colorWithRed:255/255.0 green:137/255.0 blue:128/255.0 alpha:1]
@@ -19,15 +20,16 @@
 
 @implementation GRViewController
 
-- (void)viewDidLoad
+- (void)viewWillAppear:(BOOL)animated
 {
-    [super viewDidLoad];
+    [super viewWillAppear:animated];
     
 	// Do any additional setup after loading the view, typically from a nib.
     if ([GRModel sharedInstance].instagramConnected && apiType == kInstagram) {
-//        [self addModelBorder];
+        [self addModelBorder];
     }
-    [self addModelBorder];
+    _modelView.alpha = _actionView.alpha = 0;
+//    [self addModelBorder];
 }
 
 - (UIImage *)maskedImageNamed:(NSString *)name color:(UIColor *)color
@@ -49,36 +51,85 @@
     _apiBorder.image = enabled ? [self maskedImageNamed:@"api-border.png" color:CORAL] : [UIImage imageNamed:@"api-border.png"];
 }
 
+- (void)modelBorderMask:(BOOL)enabled {
+    _modelBorder.image = enabled ? [self maskedImageNamed:@"api-border.png" color:CORAL] : [UIImage imageNamed:@"api-border.png"];
+}
+
 - (void)addCell:(GRInstructionCell *)cell {
     if (cell.cellType == kAPI) {
         apiType = cell.apiType;
         if (apiType == kInstagram) {
-            [[GRModel sharedInstance] authorizeInstagram];
+            if ([[GRModel sharedInstance] authorizeInstagram]) [self addModelBorder];
         }
+        if (!selectedAPIView) {
+            selectedAPIView = [[UIView alloc] initWithFrame:CGRectMake(BORDER_INSET/2, BORDER_INSET/2, _apiBorder.frame.size.width - BORDER_INSET, _apiBorder.frame.size.height - BORDER_INSET)];
+            selectedAPIView.backgroundColor = [UIColor colorWithWhite:1 alpha:.7];
+            APILogoView = [[UIImageView alloc] initWithFrame:CGRectMake(8, 8, 42, 42)];
+            [selectedAPIView addSubview:APILogoView];
+            APITitle = [[UILabel alloc] initWithFrame:CGRectMake(58, 8, 183, 21)];
+            APITitle.font = [UIFont systemFontOfSize:17];
+            [selectedAPIView addSubview:APITitle];
+            APISubtitle = [[UILabel alloc] initWithFrame:CGRectMake(58, 29, 239, 21)];
+            APISubtitle.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:13];
+            [selectedAPIView addSubview:APISubtitle];
+        }
+        APILogoView.image = [(UIImageView *)[cell viewWithTag:1] image];
+        APITitle.text = [(UILabel *)[cell viewWithTag:2] text];
+        APISubtitle.text = [(UILabel *)[cell viewWithTag:3] text];
+        [_apiBorder addSubview:selectedAPIView];
+        
     }
-    else {
+    else if (cell.cellType == kModel) {
+        if (apiType == kInstagram) {
+            model = [GRInstagramModel modelForType:cell.modelType];
+            //TODO try to add filters here `filtersForModelType`
+        }
+        [self addActionBorder];
+        
+    }
+    else if (cell.cellType == kAction){
+        
+        if (apiType == kInstagram) {
+            action = [GRInstagramModel actionForType:cell.actionType];
+        }
         
     }
 }
 
 - (void)addModelBorder {
+    _modelView.transform = CGAffineTransformMakeScale(.2, .2);
+    [UIView animateWithDuration:.3 animations:^{
+        _modelView.transform = CGAffineTransformIdentity;
+    }completion:nil];
+    _modelView.alpha = 1;
     CAShapeLayer *shapeLayer = [CAShapeLayer layer];
     [_modelView.layer addSublayer:shapeLayer];
+    [self addBorder:shapeLayer offset:703];
+}
+
+- (void)addActionBorder {
+    _actionView.transform = CGAffineTransformMakeScale(.2, .2);
+    [UIView animateWithDuration:.3 animations:^{
+        _actionView.transform = CGAffineTransformIdentity;
+    }completion:nil];
+    _actionView.alpha = 1;
+    CAShapeLayer *shapeLayer = [CAShapeLayer layer];
+    [_actionView.layer addSublayer:shapeLayer];
+    [self addBorder:shapeLayer offset:100];
+}
+
+- (void)addBorder:(CAShapeLayer *)shapeLayer offset:(int)deltaY {
     UIBezierPath *path = [UIBezierPath bezierPath];
-    //draw a line
-    [path moveToPoint:CGPointMake(0, 10)]; //add yourStartPoint here
-    [path addLineToPoint:CGPointMake(703, 10)];// add yourEndPoint here
+    [path moveToPoint:CGPointMake(0, 10)];
+    [path addLineToPoint:CGPointMake(deltaY, 10)];
     [path stroke];
-    
-//    float dashPattern[] = {20,60,40,20}; //make your pattern here
-//    [path setLineDash:dashPattern count:4 phase:3];
     
     UIColor *fill = [UIColor whiteColor];
     shapeLayer.strokeStart = 0.0;
     shapeLayer.strokeColor = fill.CGColor;
     shapeLayer.lineWidth = 5.0;
     shapeLayer.lineJoin = kCALineJoinMiter;
-    shapeLayer.lineDashPattern = @[@20,@9];
+    shapeLayer.lineDashPattern = @[@25,@9];
     shapeLayer.lineDashPhase = 3.0f;
     shapeLayer.path = path.CGPath;
     

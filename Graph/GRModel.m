@@ -28,7 +28,7 @@
     return sharedInstance;
 }
 
-- (void)authorizeInstagram {
+- (BOOL)authorizeInstagram {
 //    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://api.instagram.com/oauth/authorize/?client_id=%@&redirect_uri=graph://&response_type=200", INSTAGRAM_CLIENT_ID]]];
 //    [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
 //    [request setHTTPMethod:@"GET"];
@@ -46,7 +46,9 @@
 //    [operation start];
     if (![[NSUserDefaults standardUserDefaults] objectForKey:@"ACCESS_TOKEN"]) {
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://api.instagram.com/oauth/authorize/?client_id=%@&redirect_uri=graph://&response_type=token", INSTAGRAM_CLIENT_ID]]];
+        return NO;
     }
+    return YES;
 }
 
 - (void)getSelf {

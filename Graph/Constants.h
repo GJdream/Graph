@@ -12,7 +12,9 @@
 typedef NS_ENUM(NSInteger, CELL_TYPE) {
     kNone,
     kAPI,
-    kModel
+    kModel,
+    kAction,
+    kFrom
 };
 
 typedef NS_ENUM(NSInteger, API_TYPE) {
@@ -26,6 +28,18 @@ typedef NS_ENUM(NSInteger, MODEL_TYPE) {
     kPhotos,
     kComments
 };
+
+typedef NS_ENUM(NSInteger, ACTION_TYPE) {
+    kNoAction,
+    kLiked
+};
+
+typedef NS_ENUM(NSInteger, FROM_TYPE) {
+    kNoOne,
+    kFromUsers
+};
+
+#define BORDER_INSET 13
 
 
 #endif

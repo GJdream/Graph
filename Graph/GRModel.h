@@ -16,7 +16,7 @@
 
 
 #pragma mark - Instagram Queries
-- (void)authorizeInstagram;
+- (BOOL)authorizeInstagram;
 - (void)getSelf;
 
 @end

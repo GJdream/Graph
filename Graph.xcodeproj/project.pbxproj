@@ -41,6 +41,7 @@
 		9EE1BEBA189411D70098BE90 /* photos-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EE1BEB9189411D60098BE90 /* photos-icon@2x.png */; };
 		9EE1BEBC1894166A0098BE90 /* comments-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EE1BEBB1894166A0098BE90 /* comments-icon@2x.png */; };
 		9EE1BEBE1894460D0098BE90 /* dotted-line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EE1BEBD1894460D0098BE90 /* dotted-line@2x.png */; };
+		9EE1BEC118948A360098BE90 /* GRInstagramModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EE1BEC018948A360098BE90 /* GRInstagramModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,6 +110,8 @@
 		9EE1BEB9189411D60098BE90 /* photos-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photos-icon@2x.png"; sourceTree = "<group>"; };
 		9EE1BEBB1894166A0098BE90 /* comments-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "comments-icon@2x.png"; sourceTree = "<group>"; };
 		9EE1BEBD1894460D0098BE90 /* dotted-line@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dotted-line@2x.png"; sourceTree = "<group>"; };
+		9EE1BEBF18948A360098BE90 /* GRInstagramModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRInstagramModel.h; sourceTree = "<group>"; };
+		9EE1BEC018948A360098BE90 /* GRInstagramModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRInstagramModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -228,6 +231,8 @@
 			children = (
 				9EE1BE91189394BF0098BE90 /* GRModel.h */,
 				9EE1BE92189394BF0098BE90 /* GRModel.m */,
+				9EE1BEBF18948A360098BE90 /* GRInstagramModel.h */,
+				9EE1BEC018948A360098BE90 /* GRInstagramModel.m */,
 			);
 			name = Singletons;
 			sourceTree = "<group>";
@@ -388,6 +393,7 @@
 				9EE1BEAF1893996C0098BE90 /* AFJSONRequestOperation.m in Sources */,
 				9EE1BEAD1893996C0098BE90 /* AFHTTPRequestOperation.m in Sources */,
 				9EE1BEB51893996C0098BE90 /* JSONKit.m in Sources */,
+				9EE1BEC118948A360098BE90 /* GRInstagramModel.m in Sources */,
 				9EE1BE93189394BF0098BE90 /* GRModel.m in Sources */,
 				9EE1BE4F1893602F0098BE90 /* main.m in Sources */,
 				9EE1BE8018936B890098BE90 /* GRSplitViewController.m in Sources */,

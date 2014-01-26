@@ -8,9 +8,10 @@
 
 #import "GRInstructionTableViewController.h"
 
+#import "GRInstagramModel.h"
+
 #import "GRInstructionCell.h"
 
-#define NUM_OF_INSTAGRAM_MODELS 3
 
 @interface GRInstructionTableViewController ()
 
@@ -32,11 +33,11 @@
     [super viewDidLoad];
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, .5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-        apiType = kInstagram;
-        filterLevel = 1;
-        [self.tableView reloadData];
-    });
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, .5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+//        apiType = kInstagram;
+//        filterLevel = 1;
+//        [self.tableView reloadData];
+//    });
 }
 
 - (void)addCell:(GRInstructionCell *)cell {
@@ -45,7 +46,30 @@
         filterLevel = 1;
         [self.tableView reloadData];
     }
-    else {
+    else if (cell.cellType == kModel) {
+        modelType = cell.modelType;
+        filterLevel = 2;
+        [self.tableView reloadData];
+        
+    }
+}
+
+#pragma mark - Model Cell Creation
+
+- (void)makeModelCell:(GRInstructionCell *)cell cellType:(MODEL_TYPE)modelType {
+    switch (modelType) {
+        case kUsers:
+            cell = [self makeUsersCell:cell];
+            break;
+        case kPhotos:
+            cell = [self makePhotosCell:cell];
+            break;
+        case kComments:
+            cell = [self makeCommentsCell:cell];
+            break;
+            
+        default:
+            break;
     }
 }
 
@@ -82,6 +106,31 @@
     return cell;
 }
 
+#pragma mark - Action Cell Creation
+
+- (void)makeActionCell:(GRInstructionCell *)cell cellType:(ACTION_TYPE)actionType {
+    switch (actionType) {
+        case kLiked:
+            cell = [self makeLikeCell:cell];
+            break;
+            
+        default:
+            break;
+    }
+}
+
+- (GRInstructionCell *)makeLikeCell:(GRInstructionCell *)cell {
+    UIImageView *logoView = (UIImageView *)[cell viewWithTag:1];
+    logoView.image = [UIImage imageNamed:@"like-icon.png"];
+    UILabel *title = (UILabel *)[cell viewWithTag:2];
+    title.text = @"Like";
+    UILabel *subtitle = (UILabel *)[cell viewWithTag:3];
+    subtitle.text = @"That has liked.";
+    cell.actionType = kLiked;
+    return cell;
+}
+
+
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -98,7 +147,7 @@
             break;
         case 1:
             if (apiType == kInstagram) {
-                rows = NUM_OF_INSTAGRAM_MODELS;
+                rows = [[GRInstagramModel models] count];
             }
             break;
             
@@ -129,15 +178,17 @@
     }
     else if (indexPath.section == 1) {
         //models receivable
-        if (indexPath.row == 0) {
-            cell = [self makeUsersCell:cell];
+        if (apiType == kInstagram) {
+            [self makeModelCell:cell cellType:[GRInstagramModel modelTypeForIndexPath:indexPath]];
         }
-        else if (indexPath.row == 1) {
-            cell = [self makePhotosCell:cell];
+        
+        cell.cellType = kModel;
+    }
+    else if (indexPath.section == 2) {
+        if (apiType == kInstagram) {
+            [self makeActionCell:cell cellType:[GRInstagramModel actionTypeForIndexPath:indexPath]];
         }
-        else if (indexPath.row == 2) {
-            cell = [self makeCommentsCell:cell];
-        }
+        
         cell.cellType = kModel;
     }
     UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self.parentViewController.parentViewController action:@selector(dragged:)];
@@ -154,6 +205,9 @@
             break;
         case 1:
             title = @"Models";
+            break;
+        case 2:
+            title = @"Actions";
             break;
             
         default:

@@ -13,7 +13,6 @@
 
 #import "GRInstructionCell.h"
 
-#define BORDER_INSET 15
 
 @interface GRSplitViewController ()
 
@@ -58,26 +57,20 @@
     else if (recognizer.state == UIGestureRecognizerStateEnded) {
         CGRect apiRect = [detailController.apiBorder convertRect:detailController.apiBorder.bounds toView:self.view];
         CGRect modelRect = [detailController.apiBorder convertRect:detailController.apiBorder.bounds toView:self.view];
-        if (CGRectIntersectsRect(selectedView.frame, apiRect)) {
-            [detailController apiBorderMask:YES];
-            [UIView animateWithDuration:.5 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-                selectedView.frame = CGRectMake(apiRect.origin.x + BORDER_INSET/2, apiRect.origin.y + BORDER_INSET/2, detailController.apiBorder.frame.size.width - BORDER_INSET, detailController.apiBorder.frame.size.height - BORDER_INSET);
+        BOOL apiIntersect = CGRectIntersectsRect(selectedView.frame, apiRect);
+        BOOL modelIntersect = CGRectIntersectsRect(selectedView.frame, modelRect);
+        if (apiIntersect || modelIntersect) {
+            if (apiIntersect) {
+                [detailController apiBorderMask:YES];
+            }
+            else if (modelIntersect) {
+                [detailController modelBorderMask:YES];
+            }
+            [detailController addCell:(GRInstructionCell *)recognizer.view];
+            [masterController addCell:(GRInstructionCell *)recognizer.view];
+            [selectedView removeFromSuperview];
+        }
 
-            } completion:^(BOOL completed) {
-                [detailController addCell:(GRInstructionCell *)recognizer.view];
-                [masterController addCell:(GRInstructionCell *)recognizer.view];
-            }];
-        }
-        else if (CGRectIntersectsRect(selectedView.frame, modelRect)) {
-            [detailController apiBorderMask:YES];
-            [UIView animateWithDuration:.5 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-                selectedView.frame = CGRectMake(apiRect.origin.x + BORDER_INSET/2, apiRect.origin.y + BORDER_INSET/2, detailController.apiBorder.frame.size.width - BORDER_INSET, detailController.apiBorder.frame.size.height - BORDER_INSET);
-                
-            } completion:^(BOOL completed) {
-                [detailController addCell:(GRInstructionCell *)recognizer.view];
-                [masterController addCell:(GRInstructionCell *)recognizer.view];
-            }];
-        }
         else {
             [UIView animateWithDuration:.5 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
                 selectedView.frame = originalRect;
