@@ -225,7 +225,7 @@
             [self makeFromCell:cell cellType:[GRInstagramModel fromTypeForIndexPath:indexPath]];
         }
         
-        cell.cellType = kAction;
+        cell.cellType = kFrom;
     }
     UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self.parentViewController.parentViewController action:@selector(dragged:)];
     [cell addGestureRecognizer:panGesture];

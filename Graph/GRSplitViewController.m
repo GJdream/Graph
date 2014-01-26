@@ -66,9 +66,6 @@
         BOOL fromIntersect = CGRectIntersectsRect(selectedView.frame, fromRect);
         if (apiIntersect || (modelIntersect && detailController.modelView.alpha == 1) || (actionIntersect && detailController.actionView.alpha == 1) || (fromIntersect && detailController.fromView.alpha == 1)) {
             CGPoint origin; CGSize size;//for selectedView animation
-//            UIView *b = [[UIView alloc] initWithFrame:apiRect];
-//            b.backgroundColor = [UIColor blackColor];
-//            [self.view addSubview:b];
             if (apiIntersect) {
                 [detailController apiBorderMask:YES];
                 origin = apiRect.origin;
@@ -107,6 +104,9 @@
                 [selectedView removeFromSuperview];
             }];
             [detailController apiBorderMask:NO];
+            [detailController modelBorderMask:NO];
+            [detailController actionBorderMask:NO];
+            [detailController fromBorderMask:NO];
         }
     }
     else {
@@ -127,11 +127,16 @@
                 selectedView.frame = CGRectMake(selectedView.frame.origin.x, selectedView.frame.origin.y, detailController.actionBorder.frame.size.width - BORDER_INSET, detailController.actionBorder.frame.size.height - BORDER_INSET);
                 [detailController actionBorderMask:YES];
             }
+            else if (CGRectIntersectsRect(selectedView.frame, fromRect) && detailController.fromView.alpha == 1) {
+                selectedView.frame = CGRectMake(selectedView.frame.origin.x, selectedView.frame.origin.y, detailController.fromBorder.frame.size.width - BORDER_INSET, detailController.fromBorder.frame.size.height - BORDER_INSET);
+                [detailController fromBorderMask:YES];
+            }
             else {
                 selectedView.frame = CGRectMake(selectedView.frame.origin.x, selectedView.frame.origin.y, originalRect.size.width, originalRect.size.height);
                 [detailController apiBorderMask:NO];
                 [detailController modelBorderMask:NO];
                 [detailController actionBorderMask:NO];
+                [detailController fromBorderMask:NO];
             }
         }completion:nil];
         

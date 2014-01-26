@@ -16,6 +16,7 @@
 + (NSArray *)models;
 + (NSString *)modelForType:(MODEL_TYPE)modelType;
 + (NSString *)actionForType:(ACTION_TYPE)actionType;
++ (NSString *)fromForType:(FROM_TYPE)actionType;
 
 + (MODEL_TYPE)modelTypeForIndexPath:(NSIndexPath *)indexPath;
 + (ACTION_TYPE)actionTypeForIndexPath:(NSIndexPath *)indexPath;

@@ -58,6 +58,19 @@
     return action;
 }
 
++ (NSString *)fromForType:(FROM_TYPE)fromType {
+    NSString *from;
+    switch (fromType) {
+        case kFromPhotos:
+            from = @"Photos";
+            break;
+            
+        default:
+            break;
+    }
+    return from;
+}
+
 + (MODEL_TYPE)modelTypeForIndexPath:(NSIndexPath *)indexPath {
     MODEL_TYPE modelType;
     switch (indexPath.row) {

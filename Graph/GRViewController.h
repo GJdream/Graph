@@ -16,7 +16,8 @@
     API_TYPE apiType;
     NSString *model;
     NSString *action;
-    
+    NSString *from;
+
     //API View
     UIView *selectedAPIView;
     UIImageView *APILogoView;

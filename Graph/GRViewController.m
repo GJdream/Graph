@@ -136,30 +136,57 @@
         [self addFromBorder];
         [_scrollView scrollRectToVisible:CGRectMake(0, 50, self.view.frame.size.width, self.view.frame.size.height) animated:YES];
     }
-    else if (cell.cellType == kAction){
+    else if (cell.cellType == kFrom){
         
         if (apiType == kInstagram) {
-            action = [GRInstagramModel actionForType:cell.actionType];
+            from = [GRInstagramModel fromForType:cell.fromType];
         }
-        if (!selectedActionView) {
-            selectedActionView = [[UIView alloc] initWithFrame:CGRectMake(BORDER_INSET/2, BORDER_INSET/2, _modelBorder.frame.size.width - BORDER_INSET, _modelBorder.frame.size.height - BORDER_INSET)];
-            selectedActionView.backgroundColor = [UIColor colorWithWhite:1 alpha:.7];
-            actionLogoView = [[UIImageView alloc] initWithFrame:CGRectMake(8, 8, 42, 42)];
-            [selectedActionView addSubview:actionLogoView];
-            actionTitle = [[UILabel alloc] initWithFrame:CGRectMake(58, 8, 183, 21)];
-            actionTitle.font = [UIFont systemFontOfSize:17];
-            [selectedActionView addSubview:actionTitle];
-            actionSubtitle = [[UILabel alloc] initWithFrame:CGRectMake(58, 29, 239, 21)];
-            actionSubtitle.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:13];
-            [selectedActionView addSubview:actionSubtitle];
+        if (!selectedFromView) {
+            selectedFromView = [[UIView alloc] initWithFrame:CGRectMake(BORDER_INSET/2, BORDER_INSET/2, _modelBorder.frame.size.width - BORDER_INSET, _modelBorder.frame.size.height - BORDER_INSET)];
+            selectedFromView.backgroundColor = [UIColor colorWithWhite:1 alpha:.7];
+            fromLogoView = [[UIImageView alloc] initWithFrame:CGRectMake(8, 8, 42, 42)];
+            [selectedFromView addSubview:fromLogoView];
+            fromTitle = [[UILabel alloc] initWithFrame:CGRectMake(58, 8, 183, 21)];
+            fromTitle.font = [UIFont systemFontOfSize:17];
+            [selectedFromView addSubview:fromTitle];
+            fromSubtitle = [[UILabel alloc] initWithFrame:CGRectMake(58, 29, 239, 21)];
+            fromSubtitle.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:13];
+            [selectedFromView addSubview:fromSubtitle];
         }
-        actionLogoView.image = [(UIImageView *)[cell viewWithTag:1] image];
-        actionTitle.text = [(UILabel *)[cell viewWithTag:2] text];
-        actionSubtitle.text = [(UILabel *)[cell viewWithTag:3] text];
-        [_actionBorder addSubview:selectedActionView];
-        _scrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height + 50);
-        [self addFromBorder];
-        [_scrollView scrollRectToVisible:CGRectMake(0, 50, self.view.frame.size.width, self.view.frame.size.height) animated:YES];
+        fromLogoView.image = [(UIImageView *)[cell viewWithTag:1] image];
+        fromTitle.text = [(UILabel *)[cell viewWithTag:2] text];
+        fromSubtitle.text = [(UILabel *)[cell viewWithTag:3] text];
+        [_fromBorder addSubview:selectedFromView];
+        //allow to query
+        _scrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height + 210);
+        
+        
+        CAShapeLayer *shapeLayer = [CAShapeLayer layer];
+        [_fromView.layer addSublayer:shapeLayer];
+        UIBezierPath *path = [UIBezierPath bezierPath];
+        [path moveToPoint:CGPointMake(55, 215)];
+        [path addLineToPoint:CGPointMake(606, 215)];
+        [path stroke];
+        
+        UIColor *fill = [UIColor whiteColor];
+        shapeLayer.strokeStart = 0.0;
+        shapeLayer.strokeColor = fill.CGColor;
+        shapeLayer.lineWidth = 5.0;
+        shapeLayer.lineJoin = kCALineJoinMiter;
+        shapeLayer.lineDashPattern = @[@25,@9];
+        shapeLayer.lineDashPhase = 3.0f;
+        shapeLayer.path = path.CGPath;
+        
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        button.backgroundColor = CORAL;
+        button.layer.cornerRadius = 14;
+        button.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:30];
+        [button setTitle:@"QUERY" forState:UIControlStateNormal];
+        button.titleLabel.textColor = [UIColor whiteColor];
+        button.frame = CGRectMake(0, 0, 322, 115);
+        button.center = CGPointMake(_fromView.center.x, 310);
+        [_fromView addSubview:button];
+        [_scrollView scrollRectToVisible:CGRectMake(0, 210, self.view.frame.size.width, self.view.frame.size.height) animated:YES];
     }
 }
 

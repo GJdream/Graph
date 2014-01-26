@@ -15,4 +15,5 @@
 @property (nonatomic, assign) API_TYPE apiType;
 @property (nonatomic, assign) MODEL_TYPE modelType;
 @property (nonatomic, assign) ACTION_TYPE actionType;
+@property (nonatomic, assign) FROM_TYPE fromType;
 @end
