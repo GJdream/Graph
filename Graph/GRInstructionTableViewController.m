@@ -170,11 +170,25 @@
             cell.fromType = kFromPhotos;
             cell = [self makePhotosCell:cell];
             break;
+        case kMe:
+            cell.fromType = kMe;
+            cell = [self makeMeCell:cell];
+            break;
             
         default:
             break;
     }
 }
+- (GRInstructionCell *)makeMeCell:(GRInstructionCell *)cell {
+    UIImageView *logoView = (UIImageView *)[cell viewWithTag:1];
+    logoView.image = [UIImage imageNamed:@"me-icon.png"];
+    UILabel *title = (UILabel *)[cell viewWithTag:2];
+    title.text = @"Me";
+    UILabel *subtitle = (UILabel *)[cell viewWithTag:3];
+    subtitle.text = @"To me.";
+    return cell;
+}
+
 
 #pragma mark - Filter Cell Creation
 
@@ -207,11 +221,11 @@
 
 - (GRInstructionCell *)makeUsernameCell:(GRInstructionCell *)cell {
     UIImageView *logoView = (UIImageView *)[cell viewWithTag:1];
-    logoView.image = [UIImage imageNamed:@"location-icon.png"];
+    logoView.image = [UIImage imageNamed:@"username-icon.png"];
     UILabel *title = (UILabel *)[cell viewWithTag:2];
-    title.text = @"Location";
+    title.text = @"Username";
     UILabel *subtitle = (UILabel *)[cell viewWithTag:3];
-    subtitle.text = @"Filter with locations";
+    subtitle.text = @"Filter with usernames.";
     return cell;
 }
 

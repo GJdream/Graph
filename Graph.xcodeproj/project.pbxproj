@@ -68,6 +68,8 @@
 		9EE1BF1318954AE00098BE90 /* snapchat-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EE1BF1218954AE00098BE90 /* snapchat-icon@2x.png */; };
 		9EE1BF1618954C3C0098BE90 /* GRSnapchatModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EE1BF1518954C3C0098BE90 /* GRSnapchatModel.m */; };
 		9EE1BF1A189551110098BE90 /* sent-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EE1BF19189551110098BE90 /* sent-icon@2x.png */; };
+		9EE1BF1C189556830098BE90 /* me-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EE1BF1B189556830098BE90 /* me-icon@2x.png */; };
+		9EE1BF1E189557CE0098BE90 /* username-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EE1BF1D189557CE0098BE90 /* username-icon@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -166,6 +168,8 @@
 		9EE1BF1418954C3C0098BE90 /* GRSnapchatModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRSnapchatModel.h; sourceTree = "<group>"; };
 		9EE1BF1518954C3C0098BE90 /* GRSnapchatModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRSnapchatModel.m; sourceTree = "<group>"; };
 		9EE1BF19189551110098BE90 /* sent-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sent-icon@2x.png"; sourceTree = "<group>"; };
+		9EE1BF1B189556830098BE90 /* me-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "me-icon@2x.png"; sourceTree = "<group>"; };
+		9EE1BF1D189557CE0098BE90 /* username-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "username-icon@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -252,6 +256,8 @@
 				9EE1BF10189534150098BE90 /* location-icon@2x.png */,
 				9EE1BF1218954AE00098BE90 /* snapchat-icon@2x.png */,
 				9EE1BF19189551110098BE90 /* sent-icon@2x.png */,
+				9EE1BF1D189557CE0098BE90 /* username-icon@2x.png */,
+				9EE1BF1B189556830098BE90 /* me-icon@2x.png */,
 				9EE1BEBD1894460D0098BE90 /* dotted-line@2x.png */,
 				9EE1BE491893602F0098BE90 /* Supporting Files */,
 			);
@@ -454,6 +460,7 @@
 				9EE1BF081895242F0098BE90 /* sb.jpg in Resources */,
 				9EE1BF1318954AE00098BE90 /* snapchat-icon@2x.png in Resources */,
 				9EE1BF11189534150098BE90 /* location-icon@2x.png in Resources */,
+				9EE1BF1C189556830098BE90 /* me-icon@2x.png in Resources */,
 				9EE1BEFB1895242F0098BE90 /* at.jpg in Resources */,
 				9EE1BF1A189551110098BE90 /* sent-icon@2x.png in Resources */,
 				9EE1BF011895242F0098BE90 /* j.jpg in Resources */,
@@ -469,6 +476,7 @@
 				9EE1BEFC1895242F0098BE90 /* bb.jpg in Resources */,
 				9EE1BE8C1893890E0098BE90 /* api-border@2x.png in Resources */,
 				9EE1BEB81893FBE60098BE90 /* users-icon@2x.png in Resources */,
+				9EE1BF1E189557CE0098BE90 /* username-icon@2x.png in Resources */,
 				9EE1BF041895242F0098BE90 /* k.jpg in Resources */,
 				9EE1BF0D189526860098BE90 /* am.jpg in Resources */,
 				9EE1BF031895242F0098BE90 /* jw.jpg in Resources */,
