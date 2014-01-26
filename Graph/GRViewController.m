@@ -51,18 +51,22 @@
 
 - (void)apiBorderMask:(BOOL)enabled {
     _apiBorder.image = enabled ? [self maskedImageNamed:@"api-border.png" color:CORAL] : [UIImage imageNamed:@"api-border.png"];
+    _APIMaskON = enabled;
 }
 
 - (void)modelBorderMask:(BOOL)enabled {
     _modelBorder.image = enabled ? [self maskedImageNamed:@"api-border.png" color:CORAL] : [UIImage imageNamed:@"api-border.png"];
+    _modelMaskON = enabled;
 }
 
 - (void)actionBorderMask:(BOOL)enabled {
     _actionBorder.image = enabled ? [self maskedImageNamed:@"api-border.png" color:CORAL] : [UIImage imageNamed:@"api-border.png"];
+    _actionMaskON = enabled;
 }
 
 - (void)fromBorderMask:(BOOL)enabled {
     _fromBorder.image = enabled ? [self maskedImageNamed:@"api-border.png" color:CORAL] : [UIImage imageNamed:@"api-border.png"];
+    _fromMaskON = enabled;
 }
 
 - (void)addCell:(GRInstructionCell *)cell onSection:(CELL_TYPE)sectionType {

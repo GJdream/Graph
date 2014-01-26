@@ -146,23 +146,34 @@
         float deltaX = newPoint.x-initialPoint.x;
         float deltaY = newPoint.y-initialPoint.y;
         selectedView.center = CGPointMake(selectedView.center.x + deltaX, selectedView.center.y + deltaY);
-        
         [UIView animateWithDuration:.2 animations:^{
             if (CGRectIntersectsRect(selectedView.frame, apiRect)) {
                 selectedView.frame = CGRectMake(selectedView.frame.origin.x, selectedView.frame.origin.y, detailController.apiBorder.frame.size.width - BORDER_INSET, detailController.apiBorder.frame.size.height - BORDER_INSET);
-                [detailController apiBorderMask:YES];
+                if (!detailController.APIMaskON)[detailController apiBorderMask:YES];
+                if (detailController.modelMaskON) [detailController modelBorderMask:NO];
+                else if (detailController.actionMaskON) [detailController actionBorderMask:NO];
+                else if (detailController.fromMaskON) [detailController fromBorderMask:NO];
             }
             else if (CGRectIntersectsRect(selectedView.frame, modelRect) && detailController.modelView.alpha == 1) {
                 selectedView.frame = CGRectMake(selectedView.frame.origin.x, selectedView.frame.origin.y, detailController.modelBorder.frame.size.width - BORDER_INSET, detailController.modelBorder.frame.size.height - BORDER_INSET);
-                [detailController modelBorderMask:YES];
+                if (!detailController.modelMaskON)[detailController modelBorderMask:YES];
+                if (detailController.APIMaskON) [detailController apiBorderMask:NO];
+                else if (detailController.actionMaskON) [detailController actionBorderMask:NO];
+                else if (detailController.fromMaskON) [detailController fromBorderMask:NO];
             }
             else if (CGRectIntersectsRect(selectedView.frame, actionRect) && detailController.actionView.alpha == 1) {
                 selectedView.frame = CGRectMake(selectedView.frame.origin.x, selectedView.frame.origin.y, detailController.actionBorder.frame.size.width - BORDER_INSET, detailController.actionBorder.frame.size.height - BORDER_INSET);
-                [detailController actionBorderMask:YES];
+                if (!detailController.actionMaskON)[detailController actionBorderMask:YES];
+                if (detailController.APIMaskON) [detailController apiBorderMask:NO];
+                else if (detailController.modelMaskON) [detailController modelBorderMask:NO];
+                else if (detailController.fromMaskON) [detailController fromBorderMask:NO];
             }
             else if (CGRectIntersectsRect(selectedView.frame, fromRect) && detailController.fromView.alpha == 1) {
                 selectedView.frame = CGRectMake(selectedView.frame.origin.x, selectedView.frame.origin.y, detailController.fromBorder.frame.size.width - BORDER_INSET, detailController.fromBorder.frame.size.height - BORDER_INSET);
-                [detailController fromBorderMask:YES];
+                if (!detailController.fromMaskON)[detailController fromBorderMask:YES];
+                if (detailController.APIMaskON) [detailController apiBorderMask:NO];
+                else if (detailController.modelMaskON) [detailController modelBorderMask:NO];
+                else if (detailController.actionMaskON) [detailController actionBorderMask:NO];
             }
             else {
                 [self turnOffMask];
@@ -176,10 +187,19 @@
 
 - (void)turnOffMask {
     //TODO: figure out how to turn mask off when slide off
-    [detailController apiBorderMask:NO];
-    [detailController modelBorderMask:NO];
-    [detailController actionBorderMask:NO];
-    [detailController fromBorderMask:NO];
+    if (detailController.APIMaskON) {
+        [detailController apiBorderMask:NO];
+    }
+    else if (detailController.modelMaskON) {
+        [detailController modelBorderMask:NO];
+
+    }
+    else if (detailController.actionMaskON) {
+        [detailController actionBorderMask:NO];
+    }
+    else if (detailController.fromMaskON) {
+        [detailController fromBorderMask:NO];
+    }
 }
 
 //- (void)dragged:(UIPanGestureRecognizer *)recognizer {

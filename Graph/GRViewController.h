@@ -24,12 +24,14 @@
     UILabel *APITitle;
     UILabel *APISubtitle;
     
+    
     //Model View
     UIView *selectedModelView;
     UIImageView *modelLogoView;
     UILabel *modelTitle;
     UILabel *modelSubtitle;
     UILabel *modelFilterText;
+    
     
     //Action View
     UIView *selectedActionView;
@@ -45,6 +47,7 @@
     UILabel *fromFilterText;
     CAShapeLayer *lastLineLayer;
     UIButton *button;
+    
 }
 
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -55,6 +58,11 @@
 @property (strong, nonatomic) IBOutlet UIImageView *actionBorder;
 @property (strong, nonatomic) IBOutlet UIView *fromView;
 @property (strong, nonatomic) IBOutlet UIImageView *fromBorder;
+
+@property (nonatomic, assign) BOOL APIMaskON;
+@property (nonatomic, assign) BOOL modelMaskON;
+@property (nonatomic, assign) BOOL actionMaskON;
+@property (nonatomic, assign) BOOL fromMaskON;
 
 - (void)apiBorderMask:(BOOL)enabled;
 - (void)modelBorderMask:(BOOL)enabled;
