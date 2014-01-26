@@ -16,6 +16,6 @@
 }
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, assign) RESULTS_TYPE resultsType;
-
+@property (nonatomic, strong) NSDictionary *filters;
 - (IBAction)done:(id)sender;
 @end

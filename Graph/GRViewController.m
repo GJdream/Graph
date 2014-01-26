@@ -376,6 +376,8 @@
     switch (alertView.tag) {
         case kModel:
             modelFilterText.text = [NSString stringWithFormat:@"Phone Number Filter:%@", text];
+            [[NSUserDefaults standardUserDefaults] setObject:text forKey:@"PhoneNumber"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
             break;
         case kFrom:
             fromFilterText.text = [NSString stringWithFormat:@"Location Filter:%@", text];
