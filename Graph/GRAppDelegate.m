@@ -8,7 +8,7 @@
 
 #import "GRAppDelegate.h"
 
-#import "GRModel.h"
+#import "GRSession.h"
 
 @implementation GRAppDelegate
 
@@ -26,7 +26,7 @@
         NSLog(@"Acess Token:%@", token);
         [[NSUserDefaults standardUserDefaults] setObject:token forKey:@"ACCESS_TOKEN"];
         [[NSUserDefaults standardUserDefaults] synchronize];
-        [GRModel sharedInstance].instagramConnected = YES;
+        [GRSession sharedInstance].instagramConnected = YES;
     }
     return YES;
 }

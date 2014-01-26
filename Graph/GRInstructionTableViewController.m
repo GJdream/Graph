@@ -65,12 +65,15 @@
 - (void)makeModelCell:(GRInstructionCell *)cell cellType:(MODEL_TYPE)modelType {
     switch (modelType) {
         case kUsers:
+            cell.modelType = kUsers;
             cell = [self makeUsersCell:cell];
             break;
         case kPhotos:
+            cell.modelType = kPhotos;
             cell = [self makePhotosCell:cell];
             break;
         case kComments:
+            cell.modelType = kComments;
             cell = [self makeCommentsCell:cell];
             break;
             
@@ -86,7 +89,6 @@
     title.text = @"Users";
     UILabel *subtitle = (UILabel *)[cell viewWithTag:3];
     subtitle.text = @"Search for users.";
-    cell.modelType = kUsers;
     return cell;
 }
 
@@ -96,8 +98,12 @@
     UILabel *title = (UILabel *)[cell viewWithTag:2];
     title.text = @"Photos";
     UILabel *subtitle = (UILabel *)[cell viewWithTag:3];
-    subtitle.text = @"Search for photos.";
-    cell.modelType = kPhotos;
+    if (cell.modelType == kPhotos) {
+        subtitle.text = @"Search for photos.";
+    }
+    else {
+        subtitle.text = @"Search from my photos.";
+    }
     return cell;
 }
 
@@ -108,7 +114,6 @@
     title.text = @"Comments";
     UILabel *subtitle = (UILabel *)[cell viewWithTag:3];
     subtitle.text = @"Search for comments.";
-    cell.modelType = kComments;
     return cell;
 }
 
@@ -117,6 +122,7 @@
 - (void)makeActionCell:(GRInstructionCell *)cell cellType:(ACTION_TYPE)actionType {
     switch (actionType) {
         case kLiked:
+            cell.actionType = kLiked;
             cell = [self makeLikeCell:cell];
             break;
             
@@ -132,7 +138,6 @@
     title.text = @"Like";
     UILabel *subtitle = (UILabel *)[cell viewWithTag:3];
     subtitle.text = @"That has liked.";
-    cell.actionType = kLiked;
     return cell;
 }
 
@@ -141,6 +146,7 @@
 - (void)makeFromCell:(GRInstructionCell *)cell cellType:(FROM_TYPE)fromType {
     switch (fromType) {
         case kFromPhotos:
+            cell.fromType = kFromPhotos;
             cell = [self makePhotosCell:cell];
             break;
             

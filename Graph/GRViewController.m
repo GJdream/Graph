@@ -8,7 +8,7 @@
 
 #import "GRViewController.h"
 
-#import "GRModel.h"
+#import "GRSession.h"
 #import "GRInstagramModel.h"
 
 
@@ -25,7 +25,7 @@
     [super viewWillAppear:animated];
     
 	// Do any additional setup after loading the view, typically from a nib.
-    if ([GRModel sharedInstance].instagramConnected && apiType == kInstagram) {
+    if ([GRSession sharedInstance].instagramConnected && apiType == kInstagram) {
         [self addModelBorder];
     }
     _modelView.alpha = _actionView.alpha = _fromView.alpha = 0;
@@ -67,7 +67,7 @@
     if (cell.cellType == kAPI) {
         apiType = cell.apiType;
         if (apiType == kInstagram) {
-            if ([[GRModel sharedInstance] authorizeInstagram]) [self addModelBorder];
+            if ([GRInstagramModel authorizeInstagram]) [self addModelBorder];
         }
         if (!selectedAPIView) {
             selectedAPIView = [[UIView alloc] initWithFrame:CGRectMake(BORDER_INSET/2, BORDER_INSET/2, _apiBorder.frame.size.width - BORDER_INSET, _apiBorder.frame.size.height - BORDER_INSET)];
@@ -89,7 +89,7 @@
     }
     else if (cell.cellType == kModel) {
         if (apiType == kInstagram) {
-            model = [GRInstagramModel modelForType:cell.modelType];
+            model = cell.modelType;
             //TODO try to add filters here `filtersForModelType`
         }
         if (!selectedModelView) {
@@ -114,7 +114,7 @@
     else if (cell.cellType == kAction){
         
         if (apiType == kInstagram) {
-            action = [GRInstagramModel actionForType:cell.actionType];
+            action = cell.actionType;
         }
         if (!selectedActionView) {
             selectedActionView = [[UIView alloc] initWithFrame:CGRectMake(BORDER_INSET/2, BORDER_INSET/2, _modelBorder.frame.size.width - BORDER_INSET, _modelBorder.frame.size.height - BORDER_INSET)];
@@ -139,7 +139,7 @@
     else if (cell.cellType == kFrom){
         
         if (apiType == kInstagram) {
-            from = [GRInstagramModel fromForType:cell.fromType];
+            from = cell.fromType;
         }
         if (!selectedFromView) {
             selectedFromView = [[UIView alloc] initWithFrame:CGRectMake(BORDER_INSET/2, BORDER_INSET/2, _modelBorder.frame.size.width - BORDER_INSET, _modelBorder.frame.size.height - BORDER_INSET)];
@@ -157,9 +157,11 @@
         fromTitle.text = [(UILabel *)[cell viewWithTag:2] text];
         fromSubtitle.text = [(UILabel *)[cell viewWithTag:3] text];
         [_fromBorder addSubview:selectedFromView];
-        //allow to query
-        _scrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height + 210);
         
+        
+        //allow to query
+        [self fromBorderMask:NO];
+        _scrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height + 210);
         
         CAShapeLayer *shapeLayer = [CAShapeLayer layer];
         [_fromView.layer addSublayer:shapeLayer];
@@ -178,6 +180,7 @@
         shapeLayer.path = path.CGPath;
         
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        [button addTarget:self action:@selector(query) forControlEvents:UIControlEventTouchUpInside];
         button.backgroundColor = CORAL;
         button.layer.cornerRadius = 14;
         button.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:30];
@@ -241,6 +244,10 @@
 //    UIImageView *modelBorderView = [[UIImageView alloc] initWithFrame:CGRectMake(197, 310, 309, 118)];
 //    modelBorderView.image = [UIImage imageNamed:@"api-border.png"];
 //    [self.view addSubview:modelBorderView];
+}
+
+- (void)query {
+    [GRInstagramModel queryWithModel:model filters:@{} action:action filters:@{} from:from filters:@{}];
 }
 
 @end

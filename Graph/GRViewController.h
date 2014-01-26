@@ -14,9 +14,9 @@
 
 @interface GRViewController : UIViewController {
     API_TYPE apiType;
-    NSString *model;
-    NSString *action;
-    NSString *from;
+    MODEL_TYPE model;
+    ACTION_TYPE action;
+    FROM_TYPE from;
 
     //API View
     UIView *selectedAPIView;

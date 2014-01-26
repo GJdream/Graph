@@ -8,25 +8,39 @@
 
 #import "GRInstagramModel.h"
 
+#define INSTAGRAM_CLIENT_ID @"65ef9fbdf51f46dfa0fe774590cc03f3"
+#define INSTAGRAM_API_URL @"https://api.instagram.com/v1/"
+
+#define GEOCOD_KEY @"98e4a56ca46a7c8e36ceae5768d8d82ede5242e"
+
 @implementation GRInstagramModel
 
-+ (GRInstagramModel *)sharedInstance
++ (BOOL)authorizeInstagram
 {
-    static GRInstagramModel *sharedInstance = nil;
-    static dispatch_once_t pred;
-    
-    dispatch_once(&pred, ^{
-        sharedInstance = [[GRInstagramModel alloc] init];
-    });
-    
-    return sharedInstance;
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"ACCESS_TOKEN"]) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://api.instagram.com/oauth/authorize/?client_id=%@&redirect_uri=graph://&response_type=token", INSTAGRAM_CLIENT_ID]]];
+        return NO;
+    }
+    return YES;
 }
 
-+ (NSArray *)models {
+//+ (void)getSelf
+//{
+//    NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/users/29174454?access_token=%@",INSTAGRAM_API_URL,[[NSUserDefaults standardUserDefaults] objectForKey:@"ACCESS_TOKEN"]]]];
+//    NSLog(@"URL:%@", [NSString stringWithFormat:@"%@/users/29174454?access_token=%@",INSTAGRAM_API_URL,[[NSUserDefaults standardUserDefaults] objectForKey:@"ACCESS_TOKEN"]]);
+//    // Here you can handle response as well
+//    if (data) {
+//        NSDictionary *dictResponse = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+//        NSLog(@"Response : %@",dictResponse);
+//    }
+//}
+
++ (NSArray *)models
+{
     return @[@"Users", @"Photos", @"Comments"];
 }
 
-+ (NSString *)modelForType:(MODEL_TYPE)modelType {
+/*+ (NSString *)modelForType:(MODEL_TYPE)modelType {
     NSString *model;
     switch (modelType) {
         case kUsers:
@@ -70,8 +84,10 @@
     }
     return from;
 }
+ */
 
-+ (MODEL_TYPE)modelTypeForIndexPath:(NSIndexPath *)indexPath {
++ (MODEL_TYPE)modelTypeForIndexPath:(NSIndexPath *)indexPath
+{
     MODEL_TYPE modelType;
     switch (indexPath.row) {
         case 0:
@@ -87,7 +103,8 @@
     return modelType;
 }
 
-+ (ACTION_TYPE)actionTypeForIndexPath:(NSIndexPath *)indexPath {
++ (ACTION_TYPE)actionTypeForIndexPath:(NSIndexPath *)indexPath
+{
     ACTION_TYPE actionType;
     switch (indexPath.row) {
         case 0:
@@ -97,7 +114,8 @@
     return actionType;
 }
 
-+ (FROM_TYPE)fromTypeForIndexPath:(NSIndexPath *)indexPath {
++ (FROM_TYPE)fromTypeForIndexPath:(NSIndexPath *)indexPath
+{
     FROM_TYPE fromType;
     switch (indexPath.row) {
         case 0:
@@ -107,7 +125,8 @@
     return fromType;
 }
 
-+ (NSArray *)actionsWithModelType:(MODEL_TYPE)modelType {
++ (NSArray *)actionsWithModelType:(MODEL_TYPE)modelType
+{
     NSArray *actions;
     switch (modelType) {
         case kUsers:
@@ -120,7 +139,8 @@
     return actions;
 }
 
-+ (NSArray *)fromsWithAction:(ACTION_TYPE)actionType modelType:(MODEL_TYPE)modelType {
++ (NSArray *)fromsWithAction:(ACTION_TYPE)actionType modelType:(MODEL_TYPE)modelType
+{
     NSArray *froms;
     switch (modelType) {
             
@@ -133,9 +153,16 @@
             }
             
             break;
-            
-
     }
     return froms;
+}
+
++ (void)queryWithModel:(MODEL_TYPE)modelType filters:(NSDictionary *)modelFilters action:(ACTION_TYPE)actionType filters:(NSDictionary *)actionFilters from:(FROM_TYPE)fromType filters:(NSDictionary *)fromFilters
+{
+    //https://api.instagram.com/v1/media/search?lat=37.3894&lng=122.0819&distance=5000
+    if (fromType == kFromPhotos) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"Instagram" object:nil];
+    }
+    
 }
 @end

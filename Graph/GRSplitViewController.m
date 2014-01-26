@@ -11,6 +11,7 @@
 
 #import "Constants.h"
 
+#import "GRPhotosViewController.h"
 #import "GRInstructionCell.h"
 
 
@@ -22,10 +23,33 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(instagramModal) name:@"Instagram" object:nil];
     detailController = (GRViewController *)self.viewControllers[1];
-    
     masterController = (GRInstructionTableViewController *)[[(UINavigationController *)self.viewControllers[0] childViewControllers] firstObject];
-    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, .5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        [self instagramModal];
+    });
+}
+
+- (void)instagramModal {
+    [self performSegueWithIdentifier:@"Results" sender:@"Instagram"];
+}
+
+- (void)snapchatModal {
+    [self performSegueWithIdentifier:@"Results" sender:@"Snapchat"];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"Results"]) {
+        GRPhotosViewController *vc = (GRPhotosViewController *)segue.destinationViewController;
+        if ([sender isEqualToString:@"Instagram"]) {
+            vc.resultsType = kInstagramResults;
+        }
+        else {
+            vc.resultsType = kSnapchatResults;
+
+        }
+    }
 }
 
 - (void)dragged:(UIPanGestureRecognizer *)recognizer {

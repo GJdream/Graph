@@ -39,6 +39,12 @@ typedef NS_ENUM(NSInteger, FROM_TYPE) {
     kFromPhotos
 };
 
+typedef NS_ENUM(NSInteger, RESULTS_TYPE) {
+    kNoResults,
+    kInstagramResults,
+    kSnapchatResults
+};
+
 #define BORDER_INSET 12
 
 
