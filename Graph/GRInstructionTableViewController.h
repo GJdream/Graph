@@ -15,6 +15,7 @@
     API_TYPE apiType;
     MODEL_TYPE modelType;
     ACTION_TYPE actionType;
+    FROM_TYPE fromType;
     int filterLevel;
 }
 - (void)addCell:(GRInstructionCell *)cell;

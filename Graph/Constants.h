@@ -14,7 +14,8 @@ typedef NS_ENUM(NSInteger, CELL_TYPE) {
     kAPI,
     kModel,
     kAction,
-    kFrom
+    kFrom,
+    kFilter
 };
 
 typedef NS_ENUM(NSInteger, API_TYPE) {
@@ -37,6 +38,11 @@ typedef NS_ENUM(NSInteger, ACTION_TYPE) {
 typedef NS_ENUM(NSInteger, FROM_TYPE) {
     kNoOne,
     kFromPhotos
+};
+
+typedef NS_ENUM(NSInteger, FILTER_TYPE) {
+    kNoFilter,
+    kLocation
 };
 
 typedef NS_ENUM(NSInteger, RESULTS_TYPE) {

@@ -125,6 +125,16 @@
     return fromType;
 }
 
++ (FILTER_TYPE)filterTypeForIndexPath:(NSIndexPath *)indexPath {
+    FILTER_TYPE filterType;
+    switch (indexPath.row) {
+        case 0:
+            filterType = kLocation;
+            break;
+    }
+    return filterType;
+}
+
 + (NSArray *)actionsWithModelType:(MODEL_TYPE)modelType
 {
     NSArray *actions;
@@ -157,11 +167,33 @@
     return froms;
 }
 
++ (NSArray *)filtersWithFrom:(FROM_TYPE)fromType withAction:(ACTION_TYPE)actionType modelType:(MODEL_TYPE)modelType {
+    NSArray *filters;
+    switch (modelType) {
+            
+        case kUsers:
+            
+            switch (actionType) {
+                case kLiked:
+                    switch (fromType) {
+                        case kFromPhotos:
+                            filters = @[@"Location"];
+                            break;
+                    }
+                    break;
+            }
+            
+            break;
+    }
+    return filters;
+
+}
+
 + (void)queryWithModel:(MODEL_TYPE)modelType filters:(NSDictionary *)modelFilters action:(ACTION_TYPE)actionType filters:(NSDictionary *)actionFilters from:(FROM_TYPE)fromType filters:(NSDictionary *)fromFilters
 {
     //https://api.instagram.com/v1/media/search?lat=37.3894&lng=122.0819&distance=5000
     if (fromType == kFromPhotos) {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, .5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
             [[NSNotificationCenter defaultCenter] postNotificationName:@"Instagram" object:nil];
         });
     }

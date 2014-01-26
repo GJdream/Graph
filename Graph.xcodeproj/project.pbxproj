@@ -64,6 +64,7 @@
 		9EE1BF0D189526860098BE90 /* am.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9EE1BF0A189526860098BE90 /* am.jpg */; };
 		9EE1BF0E189526860098BE90 /* dj.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9EE1BF0B189526860098BE90 /* dj.jpg */; };
 		9EE1BF0F189526860098BE90 /* gma.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9EE1BF0C189526860098BE90 /* gma.jpg */; };
+		9EE1BF11189534150098BE90 /* location-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EE1BF10189534150098BE90 /* location-icon@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -157,6 +158,7 @@
 		9EE1BF0A189526860098BE90 /* am.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = am.jpg; sourceTree = "<group>"; };
 		9EE1BF0B189526860098BE90 /* dj.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = dj.jpg; sourceTree = "<group>"; };
 		9EE1BF0C189526860098BE90 /* gma.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = gma.jpg; sourceTree = "<group>"; };
+		9EE1BF10189534150098BE90 /* location-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location-icon@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -240,6 +242,7 @@
 				9EE1BEB9189411D60098BE90 /* photos-icon@2x.png */,
 				9EE1BEBB1894166A0098BE90 /* comments-icon@2x.png */,
 				9EE1BEC218949FA60098BE90 /* like-icon@2x.png */,
+				9EE1BF10189534150098BE90 /* location-icon@2x.png */,
 				9EE1BEBD1894460D0098BE90 /* dotted-line@2x.png */,
 				9EE1BE491893602F0098BE90 /* Supporting Files */,
 			);
@@ -438,6 +441,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9EE1BF081895242F0098BE90 /* sb.jpg in Resources */,
+				9EE1BF11189534150098BE90 /* location-icon@2x.png in Resources */,
 				9EE1BEFB1895242F0098BE90 /* at.jpg in Resources */,
 				9EE1BF011895242F0098BE90 /* j.jpg in Resources */,
 				9EE1BEF91895242F0098BE90 /* a.jpg in Resources */,

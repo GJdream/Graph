@@ -12,7 +12,7 @@
 
 #import "GRInstructionCell.h"
 
-@interface GRViewController : UIViewController {
+@interface GRViewController : UIViewController <UIAlertViewDelegate> {
     API_TYPE apiType;
     MODEL_TYPE model;
     ACTION_TYPE action;
@@ -41,6 +41,7 @@
     UIImageView *fromLogoView;
     UILabel *fromTitle;
     UILabel *fromSubtitle;
+    UILabel *fromFilterText;
     CAShapeLayer *lastLineLayer;
     UIButton *button;
 }
@@ -58,6 +59,6 @@
 - (void)modelBorderMask:(BOOL)enabled;
 - (void)actionBorderMask:(BOOL)enabled;
 - (void)fromBorderMask:(BOOL)enabled;
-- (void)addCell:(GRInstructionCell *)cell;
+- (void)addCell:(GRInstructionCell *)cell onSection:(CELL_TYPE)sectionType;
 - (IBAction)clear:(id)sender;
 @end

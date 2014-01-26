@@ -16,4 +16,5 @@
 @property (nonatomic, assign) MODEL_TYPE modelType;
 @property (nonatomic, assign) ACTION_TYPE actionType;
 @property (nonatomic, assign) FROM_TYPE fromType;
+@property (nonatomic, assign) FILTER_TYPE filterType;
 @end

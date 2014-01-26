@@ -58,6 +58,12 @@
         [self.tableView reloadData];
         
     }
+    else if (cell.cellType == kFrom) {
+        fromType = cell.fromType;
+        filterLevel = 4;
+        [self.tableView reloadData];
+        
+    }
 }
 
 #pragma mark - Model Cell Creation
@@ -155,6 +161,31 @@
     }
 }
 
+#pragma mark - Filter Cell Creation
+
+- (void)makeFilterCell:(GRInstructionCell *)cell cellType:(FILTER_TYPE)filterType {
+    switch (filterType) {
+        case kLocation:
+            cell.filterType = kLocation;
+            cell = [self makeLocationCell:cell];
+            break;
+            
+        default:
+            break;
+    }
+}
+
+
+- (GRInstructionCell *)makeLocationCell:(GRInstructionCell *)cell {
+    UIImageView *logoView = (UIImageView *)[cell viewWithTag:1];
+    logoView.image = [UIImage imageNamed:@"location-icon.png"];
+    UILabel *title = (UILabel *)[cell viewWithTag:2];
+    title.text = @"Location";
+    UILabel *subtitle = (UILabel *)[cell viewWithTag:3];
+    subtitle.text = @"Filter with locations";
+    return cell;
+}
+
 
 #pragma mark - UITableViewDataSource
 
@@ -181,6 +212,11 @@
             }
             break;
         case 3:
+            if (apiType == kInstagram) {
+                rows = [[GRInstagramModel fromsWithAction:actionType modelType:modelType] count];
+            }
+            break;
+        case 4:
             if (apiType == kInstagram) {
                 rows = [[GRInstagramModel fromsWithAction:actionType modelType:modelType] count];
             }
@@ -233,6 +269,13 @@
         
         cell.cellType = kFrom;
     }
+    else if (indexPath.section == 4) {
+        if (apiType == kInstagram) {
+            [self makeFilterCell:cell cellType:[GRInstagramModel filterTypeForIndexPath:indexPath]];
+        }
+        
+        cell.cellType = kFilter;
+    }
     UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self.parentViewController.parentViewController action:@selector(dragged:)];
     [cell addGestureRecognizer:panGesture];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -253,6 +296,9 @@
             break;
         case 3:
             title = @"From";
+            break;
+        case 4:
+            title = @"Filter";
             break;
             
         default:

@@ -91,31 +91,39 @@
         BOOL fromIntersect = CGRectIntersectsRect(selectedView.frame, fromRect);
         if (apiIntersect || (modelIntersect && detailController.modelView.alpha == 1) || (actionIntersect && detailController.actionView.alpha == 1) || (fromIntersect && detailController.fromView.alpha == 1)) {
             CGPoint origin; CGSize size;//for selectedView animation
+            CELL_TYPE section = kNone;
             if (apiIntersect) {
+                section = kAPI;
                 [detailController apiBorderMask:YES];
                 origin = apiRect.origin;
                 size = detailController.apiBorder.frame.size;
             }
             else if (modelIntersect) {
+                section = kModel;
                 [detailController modelBorderMask:YES];
                 origin = modelRect.origin;
                 size = detailController.modelBorder.frame.size;
             }
             else if (actionIntersect) {
+                section = kAction;
                 [detailController actionBorderMask:YES];
                 origin = actionRect.origin;
                 size = detailController.actionBorder.frame.size;
             }
             else if (fromIntersect) {
+                section = kFrom;
                 [detailController fromBorderMask:YES];
                 origin = fromRect.origin;
                 size = detailController.fromBorder.frame.size;
             }
             [UIView animateWithDuration:.5 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
                 selectedView.frame = CGRectMake(origin.x + BORDER_INSET/2, origin.y + BORDER_INSET/2, size.width - BORDER_INSET, size.height - BORDER_INSET);
+                if ([(GRInstructionCell *)recognizer.view cellType] == kFilter) {
+                    selectedView.alpha = 0;
+                }
             } completion:^(BOOL completed) {
                 [selectedView removeFromSuperview];
-                [detailController addCell:(GRInstructionCell *)recognizer.view];
+                [detailController addCell:(GRInstructionCell *)recognizer.view onSection:section];
                 [masterController addCell:(GRInstructionCell *)recognizer.view];
 
             }];
@@ -140,6 +148,7 @@
         selectedView.center = CGPointMake(selectedView.center.x + deltaX, selectedView.center.y + deltaY);
         
         [UIView animateWithDuration:.2 animations:^{
+            [self turnOffMask];
             if (CGRectIntersectsRect(selectedView.frame, apiRect)) {
                 selectedView.frame = CGRectMake(selectedView.frame.origin.x, selectedView.frame.origin.y, detailController.apiBorder.frame.size.width - BORDER_INSET, detailController.apiBorder.frame.size.height - BORDER_INSET);
                 [detailController apiBorderMask:YES];
@@ -158,15 +167,18 @@
             }
             else {
                 selectedView.frame = CGRectMake(selectedView.frame.origin.x, selectedView.frame.origin.y, originalRect.size.width, originalRect.size.height);
-                [detailController apiBorderMask:NO];
-                [detailController modelBorderMask:NO];
-                [detailController actionBorderMask:NO];
-                [detailController fromBorderMask:NO];
             }
         }completion:nil];
         
     }
     initialPoint = newPoint;
+}
+
+- (void)turnOffMask {
+    [detailController apiBorderMask:NO];
+    [detailController modelBorderMask:NO];
+    [detailController actionBorderMask:NO];
+    [detailController fromBorderMask:NO];
 }
 
 //- (void)dragged:(UIPanGestureRecognizer *)recognizer {

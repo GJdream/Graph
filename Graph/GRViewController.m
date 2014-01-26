@@ -63,7 +63,7 @@
     _fromBorder.image = enabled ? [self maskedImageNamed:@"api-border.png" color:CORAL] : [UIImage imageNamed:@"api-border.png"];
 }
 
-- (void)addCell:(GRInstructionCell *)cell {
+- (void)addCell:(GRInstructionCell *)cell onSection:(CELL_TYPE)sectionType {
     if (cell.cellType == kAPI) {
         apiType = cell.apiType;
         if (apiType == kInstagram) {
@@ -136,7 +136,7 @@
         [self addFromBorder];
         [_scrollView scrollRectToVisible:CGRectMake(0, 50, self.view.frame.size.width, self.view.frame.size.height) animated:YES];
     }
-    else if (cell.cellType == kFrom){
+    else if (cell.cellType == kFrom) {
         
         if (apiType == kInstagram) {
             from = cell.fromType;
@@ -152,6 +152,10 @@
             fromSubtitle = [[UILabel alloc] initWithFrame:CGRectMake(58, 29, 239, 21)];
             fromSubtitle.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:13];
             [selectedFromView addSubview:fromSubtitle];
+            fromFilterText = [[UILabel alloc] initWithFrame:CGRectMake(58, 52, 239, 21)];
+            fromFilterText.text = @"";
+            fromFilterText.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:13];
+            [selectedFromView addSubview:fromFilterText];
         }
         fromLogoView.image = [(UIImageView *)[cell viewWithTag:1] image];
         fromTitle.text = [(UILabel *)[cell viewWithTag:2] text];
@@ -193,6 +197,40 @@
         
         [_fromView addSubview:button];
         [_scrollView scrollRectToVisible:CGRectMake(0, 210, self.view.frame.size.width, self.view.frame.size.height) animated:YES];
+    }
+    else if (cell.cellType == kFilter) {
+        if (sectionType == kAPI) {
+            ;
+        }
+        else if (sectionType == kModel) {
+            ;
+        }
+        else if (sectionType == kAction) {
+            ;
+        }
+        else if (sectionType == kFrom) {
+            if (cell.filterType == kLocation) {
+                UIActivityIndicatorView *aiv = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 45, 45)];
+                aiv.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
+                aiv.center = [[UIApplication sharedApplication] keyWindow].center;
+                [[[UIApplication sharedApplication] keyWindow] addSubview:aiv];
+                [aiv startAnimating];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 4 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                    [aiv stopAnimating];
+                    [aiv removeFromSuperview];
+                });
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Enter Location" message:@"Results will be filtered through location" delegate:self cancelButtonTitle:@"Done" otherButtonTitles:nil];
+                    alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+                    alert.tag = kFrom;
+                    [alert show];
+                });
+                
+                
+                
+            }
+            
+        }
     }
 }
 
@@ -268,4 +306,15 @@
     });
 }
 
+#pragma mark - UIAlertViewDelegate
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    NSString *location = [(UITextField *)[alertView textFieldAtIndex:0] text];
+    switch (alertView.tag) {
+        case kFrom:
+            fromFilterText.text = [NSString stringWithFormat:@"Filter:%@", location];
+            break;
+
+    }
+}
 @end
