@@ -70,6 +70,8 @@
 		9EE1BF1A189551110098BE90 /* sent-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EE1BF19189551110098BE90 /* sent-icon@2x.png */; };
 		9EE1BF1C189556830098BE90 /* me-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EE1BF1B189556830098BE90 /* me-icon@2x.png */; };
 		9EE1BF1E189557CE0098BE90 /* username-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EE1BF1D189557CE0098BE90 /* username-icon@2x.png */; };
+		9EE1BF2018955B210098BE90 /* screenshot-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EE1BF1F18955B210098BE90 /* screenshot-icon@2x.png */; };
+		9EE1BF2418955CD30098BE90 /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EE1BF2318955CD30098BE90 /* FXBlurView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -170,6 +172,9 @@
 		9EE1BF19189551110098BE90 /* sent-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sent-icon@2x.png"; sourceTree = "<group>"; };
 		9EE1BF1B189556830098BE90 /* me-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "me-icon@2x.png"; sourceTree = "<group>"; };
 		9EE1BF1D189557CE0098BE90 /* username-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "username-icon@2x.png"; sourceTree = "<group>"; };
+		9EE1BF1F18955B210098BE90 /* screenshot-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screenshot-icon@2x.png"; sourceTree = "<group>"; };
+		9EE1BF2218955CD30098BE90 /* FXBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXBlurView.h; sourceTree = "<group>"; };
+		9EE1BF2318955CD30098BE90 /* FXBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXBlurView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -258,6 +263,7 @@
 				9EE1BF19189551110098BE90 /* sent-icon@2x.png */,
 				9EE1BF1D189557CE0098BE90 /* username-icon@2x.png */,
 				9EE1BF1B189556830098BE90 /* me-icon@2x.png */,
+				9EE1BF1F18955B210098BE90 /* screenshot-icon@2x.png */,
 				9EE1BEBD1894460D0098BE90 /* dotted-line@2x.png */,
 				9EE1BE491893602F0098BE90 /* Supporting Files */,
 			);
@@ -318,6 +324,7 @@
 		9EE1BEB61893996E0098BE90 /* External */ = {
 			isa = PBXGroup;
 			children = (
+				9EE1BF2118955CD30098BE90 /* FXBlurView */,
 				9EE1BECA1895140B0098BE90 /* AFNetworking */,
 				9EE1BEA91893996C0098BE90 /* JSONKit */,
 			);
@@ -375,6 +382,15 @@
 				9EE1BEF81895242F0098BE90 /* sn.jpg */,
 			);
 			path = ig;
+			sourceTree = "<group>";
+		};
+		9EE1BF2118955CD30098BE90 /* FXBlurView */ = {
+			isa = PBXGroup;
+			children = (
+				9EE1BF2218955CD30098BE90 /* FXBlurView.h */,
+				9EE1BF2318955CD30098BE90 /* FXBlurView.m */,
+			);
+			path = FXBlurView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -460,6 +476,7 @@
 				9EE1BF081895242F0098BE90 /* sb.jpg in Resources */,
 				9EE1BF1318954AE00098BE90 /* snapchat-icon@2x.png in Resources */,
 				9EE1BF11189534150098BE90 /* location-icon@2x.png in Resources */,
+				9EE1BF2018955B210098BE90 /* screenshot-icon@2x.png in Resources */,
 				9EE1BF1C189556830098BE90 /* me-icon@2x.png in Resources */,
 				9EE1BEFB1895242F0098BE90 /* at.jpg in Resources */,
 				9EE1BF1A189551110098BE90 /* sent-icon@2x.png in Resources */,
@@ -512,6 +529,7 @@
 			files = (
 				9EE1BEDF1895140B0098BE90 /* AFHTTPRequestOperation.m in Sources */,
 				9EE1BEB51893996C0098BE90 /* JSONKit.m in Sources */,
+				9EE1BF2418955CD30098BE90 /* FXBlurView.m in Sources */,
 				9EE1BEC118948A360098BE90 /* GRInstagramModel.m in Sources */,
 				9EE1BE4F1893602F0098BE90 /* main.m in Sources */,
 				9EE1BE8018936B890098BE90 /* GRSplitViewController.m in Sources */,

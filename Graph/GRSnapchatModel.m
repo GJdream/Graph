@@ -29,6 +29,9 @@
         case 0:
             actionType = kSent;
             break;
+        case 1:
+            actionType = kScreenshot;
+            break;
     }
     return actionType;
 }
@@ -65,7 +68,7 @@
     NSArray *actions;
     switch (modelType) {
         case kPhotos:
-            actions = @[@"Sent"];
+            actions = @[@"Sent", @"Screenshot"];
             break;
             
         default:

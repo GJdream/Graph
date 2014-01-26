@@ -34,7 +34,8 @@ typedef NS_ENUM(NSInteger, MODEL_TYPE) {
 typedef NS_ENUM(NSInteger, ACTION_TYPE) {
     kNoAction,
     kLiked,
-    kSent
+    kSent,
+    kScreenshot
 };
 
 typedef NS_ENUM(NSInteger, FROM_TYPE) {

@@ -136,7 +136,10 @@
             cell.actionType = kSent;
             cell = [self makeSentCell:cell];
             break;
-            
+        case kScreenshot:
+            cell.actionType = kScreenshot;
+            cell = [self makeScreenshotCell:cell];
+            break;
         default:
             break;
     }
@@ -161,6 +164,18 @@
     subtitle.text = @"That were sent.";
     return cell;
 }
+
+- (GRInstructionCell *)makeScreenshotCell:(GRInstructionCell *)cell {
+    UIImageView *logoView = (UIImageView *)[cell viewWithTag:1];
+    logoView.image = [UIImage imageNamed:@"screenshot-icon.png"];
+    UILabel *title = (UILabel *)[cell viewWithTag:2];
+    title.text = @"Screenshot";
+    UILabel *subtitle = (UILabel *)[cell viewWithTag:3];
+    subtitle.text = @"That were saved.";
+    return cell;
+}
+
+
 
 #pragma mark - From Cell Creation
 

@@ -23,13 +23,13 @@
     UIImageView *APILogoView;
     UILabel *APITitle;
     UILabel *APISubtitle;
-    UILabel *APIFilterText;
     
     //Model View
     UIView *selectedModelView;
     UIImageView *modelLogoView;
     UILabel *modelTitle;
     UILabel *modelSubtitle;
+    UILabel *modelFilterText;
     
     //Action View
     UIView *selectedActionView;

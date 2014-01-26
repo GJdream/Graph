@@ -11,6 +11,8 @@
 #import "GRSession.h"
 #import "GRInstagramModel.h"
 
+#import "FXBlurView.h"
+
 
 #define CORAL [UIColor colorWithRed:255/255.0 green:137/255.0 blue:128/255.0 alpha:1]
 
@@ -84,10 +86,6 @@
             APISubtitle = [[UILabel alloc] initWithFrame:CGRectMake(58, 29, 239, 21)];
             APISubtitle.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:13];
             [selectedAPIView addSubview:APISubtitle];
-            APIFilterText = [[UILabel alloc] initWithFrame:CGRectMake(58, 52, 239, 21)];
-            APIFilterText.text = @"";
-            APIFilterText.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:13];
-            [selectedFromView addSubview:APIFilterText];
         }
         APILogoView.image = [(UIImageView *)[cell viewWithTag:1] image];
         APITitle.text = [(UILabel *)[cell viewWithTag:2] text];
@@ -111,6 +109,10 @@
             modelSubtitle = [[UILabel alloc] initWithFrame:CGRectMake(58, 29, 239, 21)];
             modelSubtitle.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:13];
             [selectedModelView addSubview:modelSubtitle];
+            modelFilterText = [[UILabel alloc] initWithFrame:CGRectMake(58, 52, 239, 21)];
+            modelFilterText.text = @"";
+            modelFilterText.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:13];
+            [selectedModelView addSubview:modelFilterText];
         }
         modelLogoView.image = [(UIImageView *)[cell viewWithTag:1] image];
         modelTitle.text = [(UILabel *)[cell viewWithTag:2] text];
@@ -208,40 +210,58 @@
     }
     else if (cell.cellType == kFilter) {
         if (sectionType == kAPI) {
+            ;
+        }
+        else if (sectionType == kModel) {
             if (cell.filterType == kUsername) {
+                FXBlurView *blur = [[FXBlurView alloc] initWithFrame:[[UIApplication sharedApplication] keyWindow].bounds];
+                blur.blurRadius = 15;
+                blur.alpha = 0;
+                [[[UIApplication sharedApplication] keyWindow] addSubview:blur];
+                
                 UIActivityIndicatorView *aiv = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 45, 45)];
                 aiv.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
-                aiv.center = CGPointMake([[UIApplication sharedApplication] keyWindow].center.x + 160, [[UIApplication sharedApplication] keyWindow].center.y);
-                [[[UIApplication sharedApplication] keyWindow] addSubview:aiv];
+                aiv.center = blur.center;
+                [blur addSubview:aiv];
                 [aiv startAnimating];
+                [UIView animateWithDuration:.2 animations:^{
+                    blur.alpha = 1;
+                }completion:nil];
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 4 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
                     [aiv stopAnimating];
                     [aiv removeFromSuperview];
+                    [blur removeFromSuperview];
                 });
                 dispatch_async(dispatch_get_main_queue(), ^{
                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Enter Username" message:@"Results will be filtered with username" delegate:self cancelButtonTitle:@"Done" otherButtonTitles:nil];
                     alert.alertViewStyle = UIAlertViewStylePlainTextInput;
-                    alert.tag = kFrom;
+                    alert.tag = kModel;
                     [alert show];
                 });
             }
-        }
-        else if (sectionType == kModel) {
-            ;
         }
         else if (sectionType == kAction) {
             ;
         }
         else if (sectionType == kFrom) {
             if (cell.filterType == kLocation) {
+                FXBlurView *blur = [[FXBlurView alloc] initWithFrame:[[UIApplication sharedApplication] keyWindow].bounds];
+                blur.blurRadius = 15;
+                blur.alpha = 0;
+                [[[UIApplication sharedApplication] keyWindow] addSubview:blur];
+                
                 UIActivityIndicatorView *aiv = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 45, 45)];
                 aiv.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
-                aiv.center = CGPointMake([[UIApplication sharedApplication] keyWindow].center.x + 160, [[UIApplication sharedApplication] keyWindow].center.y);
-                [[[UIApplication sharedApplication] keyWindow] addSubview:aiv];
+                aiv.center = blur.center;
+                [blur addSubview:aiv];
                 [aiv startAnimating];
+                [UIView animateWithDuration:.2 animations:^{
+                    blur.alpha = 1;
+                }completion:nil];
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 4 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
                     [aiv stopAnimating];
                     [aiv removeFromSuperview];
+                    [blur removeFromSuperview];
                 });
                 dispatch_async(dispatch_get_main_queue(), ^{
                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Enter Location" message:@"Results will be filtered through location" delegate:self cancelButtonTitle:@"Done" otherButtonTitles:nil];
@@ -257,6 +277,7 @@
 
 - (IBAction)clear:(id)sender {
     apiType = nil; model = nil; action = nil; from = nil;
+    modelFilterText.text = fromFilterText.text = @"";
     [lastLineLayer removeFromSuperlayer];
     [button removeFromSuperview];
     _modelView.alpha = _actionView.alpha = _fromView.alpha = 0;
@@ -321,8 +342,12 @@
 }
 
 - (void)query {
-    [GRInstagramModel queryWithModel:model filters:@{} action:action filters:@{} from:from filters:@{}];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, .75 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+    if (apiType == kInstagram) {
+        [GRInstagramModel queryWithModel:model filters:@{} action:action filters:@{} from:from filters:@{}];
+    }
+    else if (apiType == kSnapchat) {
+    }
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
         [self clear:nil];
     });
 }
@@ -332,8 +357,8 @@
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     NSString *text = [(UITextField *)[alertView textFieldAtIndex:0] text];
     switch (alertView.tag) {
-        case kAPI:
-            APIFilterText.text = [NSString stringWithFormat:@"Username Filter:%@", text];
+        case kModel:
+            modelFilterText.text = [NSString stringWithFormat:@"Username Filter:%@", text];
             break;
         case kFrom:
             fromFilterText.text = [NSString stringWithFormat:@"Location Filter:%@", text];
