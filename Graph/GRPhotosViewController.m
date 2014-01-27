@@ -19,26 +19,46 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     if (_resultsType == kInstagramResults) {
-        values = @[@{@"name" : @"thisguyjayson", @"image" : @"j.jpg"},
-                   @{@"name" : @"emilymorgaan", @"image" : @"e.jpg"},
-                   @{@"name" : @"1katiebug234", @"image" : @"k.jpg"},
-                   @{@"name" : @"jerril_jacob", @"image" : @"jj.jpg"},
-                   @{@"name" : @"arturocardoso", @"image" : @"a.jpg"},
-                   @{@"name" : @"astrocuer", @"image" : @"ac.jpg"},
-                   @{@"name" : @"steviebear95", @"image" : @"sb.jpg"},
-                   @{@"name" : @"99manunited", @"image" : @"dd.jpg"},
-                   @{@"name" : @"deej_thearteest", @"image" : @"d.jpg"},
-                   @{@"name" : @"jwilso6k", @"image" : @"jw.jpg"},
-                   @{@"name" : @"sabrinaaahmed", @"image" : @"sa.jpg"},
-                   @{@"name" : @"roldyc", @"image" : @"r.jpg"},
-                   @{@"name" : @"kelsssmae", @"image" : @"ks.jpg"},
-                   @{@"name" : @"colinyououtt", @"image" : @"ct.jpg"},
-                   @{@"name" : @"benbenny17", @"image" : @"bb.jpg"},
-                   @{@"name" : @"anthonytharp", @"image" : @"at.jpg"},
-                   @{@"name" : @"steffyninan", @"image" : @"sn.jpg"},
-                   @{@"name" : @"adimouse", @"image" : @"am.jpg"},
-                   @{@"name" : @"djabin_t", @"image" : @"dj.jpg"},
-                   @{@"name" : @"ggmathai45", @"image" : @"gma.jpg"}];
+        NSArray *array = @[@{@"name" : @"thisguyjayson", @"image" : @"j.jpg", @"location" : @"Dallas, Texas"},
+                   @{@"name" : @"emilymorgaan", @"image" : @"e.jpg", @"location" : @"Dallas, Texas"},
+                   @{@"name" : @"1katiebug234", @"image" : @"k.jpg", @"location" : @"Dallas, Texas"},
+                   @{@"name" : @"jerril_jacob", @"image" : @"jj.jpg", @"location" : @"Dallas, Texas"},
+                   @{@"name" : @"arturocardoso", @"image" : @"a.jpg", @"location" : @"Dallas, Texas"},
+                   @{@"name" : @"astrocuer", @"image" : @"ac.jpg", @"location" : @"Dallas, Texas"},
+                   @{@"name" : @"steviebear95", @"image" : @"sb.jpg", @"location" : @"Dallas, Texas"},
+                   @{@"name" : @"99manunited", @"image" : @"dd.jpg", @"location" : @"Dallas, Texas"},
+                   @{@"name" : @"deej_thearteest", @"image" : @"d.jpg", @"location" : @"Dallas, Texas"},
+                   @{@"name" : @"jwilso6k", @"image" : @"jw.jpg", @"location" : @"Dallas, Texas"},
+                   @{@"name" : @"sabrinaaahmed", @"image" : @"sa.jpg", @"location" : @"Dallas, Texas"},
+                   @{@"name" : @"roldyc", @"image" : @"r.jpg", @"location" : @"Dallas, Texas"},
+                   @{@"name" : @"kelsssmae", @"image" : @"ks.jpg", @"location" : @"Dallas, Texas"},
+                   @{@"name" : @"colinyououtt", @"image" : @"ct.jpg", @"location" : @"Santa Monica, California"},
+                   @{@"name" : @"benbenny17", @"image" : @"bb.jpg", @"location" : @"Santa Monica, California"},
+                   @{@"name" : @"anthonytharp", @"image" : @"at.jpg", @"location" : @"Santa Monica, California"},
+                   @{@"name" : @"steffyninan", @"image" : @"sn.jpg", @"location" : @"Santa Monica, California"},
+                   @{@"name" : @"adimouse", @"image" : @"am.jpg", @"location" : @"Santa Monica, California"},
+                   @{@"name" : @"djabin_t", @"image" : @"dj.jpg", @"location" : @"Santa Monica, California"},
+                   @{@"name" : @"ggmathai45", @"image" : @"gma.jpg", @"location" : @"Santa Monica, California"},
+                   @{@"name" : @"roger_macias", @"image" : @"rg.jpg", @"location" : @"Santa Monica, California"},
+                   @{@"name" : @"nicole_taylor7", @"image" : @"nta.jpg", @"location" : @"Santa Monica, California"},
+                   @{@"name" : @"shelly_booth74", @"image" : @"sbt.jpg", @"location" : @"Santa Monica, California"},
+                   @{@"name" : @"lovesunshine13", @"image" : @"rme.jpg", @"location" : @"Santa Monica, California"},
+                   @{@"name" : @"heyquayquay", @"image" : @"hqq.jpg", @"location" : @"Mountain View, California"},
+                   @{@"name" : @"omgeezitsjenny", @"image" : @"omg.jpg", @"location" : @"Mountain View, California"},
+                   @{@"name" : @"ashley13jo", @"image" : @"asl.jpg", @"location" : @"Mountain View, California"},
+                   @{@"name" : @"rosa_raquel", @"image" : @"rsq.jpg", @"location" : @"Mountain View, California"},
+                   @{@"name" : @"garek_ealey", @"image" : @"pper.jpg", @"location" : @"Mountain View, California"},
+                   @{@"name" : @"halle24kate", @"image" : @"qwer.jpg", @"location" : @"Mountain View, California"}];
+        
+        NSMutableArray *mValues = [[NSMutableArray alloc] initWithCapacity:values.count];
+        
+        for (NSDictionary *dict in array) {
+            NSLog(@"%@", [[[NSUserDefaults standardUserDefaults] objectForKey:@"Location"] lowercaseString]);
+            if ([[[[NSUserDefaults standardUserDefaults] objectForKey:@"Location"] lowercaseString] isEqualToString:[dict[@"location"] lowercaseString]]) {
+                [mValues addObject:dict];
+            }
+        }
+        values = (NSArray *)mValues;
         [_collectionView reloadData];
 
     }

@@ -381,6 +381,8 @@
             break;
         case kFrom:
             fromFilterText.text = [NSString stringWithFormat:@"Location Filter:%@", text];
+            [[NSUserDefaults standardUserDefaults] setObject:[text lowercaseString] forKey:@"Location"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
             break;
 
     }
