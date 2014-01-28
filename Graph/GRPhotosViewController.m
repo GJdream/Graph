@@ -19,36 +19,39 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     if (_resultsType == kInstagramResults) {
-        NSArray *array = @[@{@"name" : @"thisguyjayson", @"image" : @"j.jpg", @"location" : @"Dallas, Texas"},
-                   @{@"name" : @"emilymorgaan", @"image" : @"e.jpg", @"location" : @"Dallas, Texas"},
-                   @{@"name" : @"1katiebug234", @"image" : @"k.jpg", @"location" : @"Dallas, Texas"},
-                   @{@"name" : @"jerril_jacob", @"image" : @"jj.jpg", @"location" : @"Dallas, Texas"},
-                   @{@"name" : @"arturocardoso", @"image" : @"a.jpg", @"location" : @"Dallas, Texas"},
-                   @{@"name" : @"astrocuer", @"image" : @"ac.jpg", @"location" : @"Dallas, Texas"},
-                   @{@"name" : @"steviebear95", @"image" : @"sb.jpg", @"location" : @"Dallas, Texas"},
-                   @{@"name" : @"99manunited", @"image" : @"dd.jpg", @"location" : @"Dallas, Texas"},
-                   @{@"name" : @"deej_thearteest", @"image" : @"d.jpg", @"location" : @"Dallas, Texas"},
-                   @{@"name" : @"jwilso6k", @"image" : @"jw.jpg", @"location" : @"Dallas, Texas"},
-                   @{@"name" : @"sabrinaaahmed", @"image" : @"sa.jpg", @"location" : @"Dallas, Texas"},
-                   @{@"name" : @"roldyc", @"image" : @"r.jpg", @"location" : @"Dallas, Texas"},
-                   @{@"name" : @"kelsssmae", @"image" : @"ks.jpg", @"location" : @"Dallas, Texas"},
-                   @{@"name" : @"colinyououtt", @"image" : @"ct.jpg", @"location" : @"Santa Monica, California"},
-                   @{@"name" : @"benbenny17", @"image" : @"bb.jpg", @"location" : @"Santa Monica, California"},
-                   @{@"name" : @"anthonytharp", @"image" : @"at.jpg", @"location" : @"Santa Monica, California"},
-                   @{@"name" : @"steffyninan", @"image" : @"sn.jpg", @"location" : @"Santa Monica, California"},
-                   @{@"name" : @"adimouse", @"image" : @"am.jpg", @"location" : @"Santa Monica, California"},
-                   @{@"name" : @"djabin_t", @"image" : @"dj.jpg", @"location" : @"Santa Monica, California"},
-                   @{@"name" : @"ggmathai45", @"image" : @"gma.jpg", @"location" : @"Santa Monica, California"},
-                   @{@"name" : @"roger_macias", @"image" : @"rg.jpg", @"location" : @"Santa Monica, California"},
-                   @{@"name" : @"nicole_taylor7", @"image" : @"nta.jpg", @"location" : @"Santa Monica, California"},
-                   @{@"name" : @"shelly_booth74", @"image" : @"sbt.jpg", @"location" : @"Santa Monica, California"},
-                   @{@"name" : @"lovesunshine13", @"image" : @"rme.jpg", @"location" : @"Santa Monica, California"},
-                   @{@"name" : @"heyquayquay", @"image" : @"hqq.jpg", @"location" : @"Mountain View, California"},
-                   @{@"name" : @"omgeezitsjenny", @"image" : @"omg.jpg", @"location" : @"Mountain View, California"},
-                   @{@"name" : @"ashley13jo", @"image" : @"asl.jpg", @"location" : @"Mountain View, California"},
-                   @{@"name" : @"rosa_raquel", @"image" : @"rsq.jpg", @"location" : @"Mountain View, California"},
-                   @{@"name" : @"garek_ealey", @"image" : @"pper.jpg", @"location" : @"Mountain View, California"},
-                   @{@"name" : @"halle24kate", @"image" : @"qwer.jpg", @"location" : @"Mountain View, California"}];
+        NSArray *array = @[@{@"name" : @"h", @"image" : @"h.jpg", @"location" : @"Dallas, Texas"},
+                           @{@"name" : @"h", @"image" : @"h.jpg", @"location" : @"Dallas, Texas"},
+                           @{@"name" : @"h", @"image" : @"h.jpg", @"location" : @"Dallas, Texas"},
+                           @{@"name" : @"h", @"image" : @"h.jpg", @"location" : @"Dallas, Texas"},
+                           @{@"name" : @"h", @"image" : @"h.jpg", @"location" : @"Dallas, Texas"},
+                           @{@"name" : @"h", @"image" : @"h.jpg", @"location" : @"Dallas, Texas"},
+                           @{@"name" : @"h", @"image" : @"h.jpg", @"location" : @"Dallas, Texas"},
+                           @{@"name" : @"h", @"image" : @"h.jpg", @"location" : @"Dallas, Texas"},
+                           @{@"name" : @"h", @"image" : @"h.jpg", @"location" : @"Dallas, Texas"},
+                           @{@"name" : @"h", @"image" : @"h.jpg", @"location" : @"Dallas, Texas"},
+                           @{@"name" : @"h", @"image" : @"h.jpg", @"location" : @"Dallas, Texas"},
+                           @{@"name" : @"h", @"image" : @"h.jpg", @"location" : @"Dallas, Texas"},
+                           @{@"name" : @"h", @"image" : @"h.jpg", @"location" : @"Dallas, Texas"},
+                           @{@"name" : @"h", @"image" : @"h.jpg", @"location" : @"Santa Monica, California"},
+                           @{@"name" : @"h", @"image" : @"h.jpg", @"location" : @"Santa Monica, California"},
+                           @{@"name" : @"h", @"image" : @"h.jpg", @"location" : @"Santa Monica, California"},
+                           @{@"name" : @"h", @"image" : @"h.jpg", @"location" : @"Santa Monica, California"},
+                           @{@"name" : @"h", @"image" : @"h.jpg", @"location" : @"Santa Monica, California"},
+                           @{@"name" : @"h", @"image" : @"h.jpg", @"location" : @"Santa Monica, California"},
+                           @{@"name" : @"h", @"image" : @"h.jpg", @"location" : @"Santa Monica, California"},
+                           @{@"name" : @"h", @"image" : @"h.jpg", @"location" : @"Santa Monica, California"},
+                           @{@"name" : @"h", @"image" : @"h.jpg", @"location" : @"Santa Monica, California"},
+                           @{@"name" : @"h", @"image" : @"h.jpg", @"location" : @"Santa Monica, California"},
+                           @{@"name" : @"h", @"image" : @"h.jpg", @"location" : @"Santa Monica, California"},
+                           @{@"name" : @"h", @"image" : @"h.jpg", @"location" : @"Santa Monica, California"},
+                           @{@"name" : @"h", @"image" : @"h.jpg", @"location" : @"Mountain View, California"},
+                           @{@"name" : @"h", @"image" : @"h.jpg", @"location" : @"Mountain View, California"},
+                           @{@"name" : @"h", @"image" : @"h.jpg", @"location" : @"Mountain View, California"},
+                           @{@"name" : @"h", @"image" : @"h.jpg", @"location" : @"Mountain View, California"},
+                           @{@"name" : @"h", @"image" : @"h.jpg", @"location" : @"Mountain View, California"},
+                           @{@"name" : @"h", @"image" : @"h.jpg", @"location" : @"Mountain View, California"},
+                           @{@"name" : @"h", @"image" : @"h.jpg", @"location" : @"Mountain View, California"},
+                           @{@"name" : @"h", @"image" : @"h.jpg", @"location" : @"Mountain View, California"}];
         
         NSMutableArray *mValues = [[NSMutableArray alloc] initWithCapacity:values.count];
         
@@ -63,8 +66,8 @@
 
     }
     else {
-        if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"PhoneNumber"] isEqualToString:@"2402464945"]) {
-            values = @[@{@"Name": @"Wajahat Siddiqui", @"Phone Number" : @"240-246-4945", @"Username" : @"agentwaj@gmail.com"}];
+        if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"PhoneNumber"] isEqualToString:@""] || YES) {
+            values = @[@{@"Name": @"Wajahat Siddiqui", @"Phone Number" : @"", @"Username" : @"agentwaj@gmail.com"}];
             [_collectionView removeFromSuperview];
             
             UILabel *name = [[UILabel alloc] initWithFrame:CGRectMake(30, 90, 150, 21)];
@@ -80,7 +83,7 @@
             [self.view addSubview:username];
             
             UILabel *number = [[UILabel alloc] initWithFrame:CGRectMake(30, 141, 150, 21)];
-            number.text = @"240-246-4945";
+            number.text = @"123-456-7899";
             number.textColor = [UIColor blackColor];
             number.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:16];
             [self.view addSubview:number];
@@ -117,7 +120,7 @@
     NSDictionary *dict = values[indexPath.row];
     if (_resultsType == kInstagram) {
         UIImageView *imageView = (UIImageView *)[cell viewWithTag:3];
-        imageView.image = [UIImage imageNamed:dict[@"image"]];
+        imageView.image = [UIImage imageNamed:@"instagram-icon.png"];
         UILabel *label = (UILabel *)[cell viewWithTag:2];
         label.text = dict[@"name"];
     }

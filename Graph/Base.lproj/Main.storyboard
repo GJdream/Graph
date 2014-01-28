@@ -217,7 +217,6 @@
         <!--Photos View Controller-->
         <scene sceneID="adC-mp-oVJ">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="c21-D2-0Dd" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="g5x-P3-b6a" customClass="GRPhotosViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="C1Y-tp-unU"/>
@@ -299,6 +298,7 @@
                         <outlet property="collectionView" destination="bnj-x6-frm" id="PQN-sV-S14"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="c21-D2-0Dd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="305" y="1109"/>
         </scene>
